@@ -10,6 +10,8 @@ import model.Dictateur;
 import model.Enfant;
 import model.Esclave;
 import model.Jouet;
+import model.Lutin;
+import model.Renne;
 import model.Traineau;
 
 public class Test {
@@ -28,10 +30,19 @@ public class Test {
 		
 		Dictateur boss = new Dictateur("Payr", "Noel", true);
 		
-		Esclave esc1 = new Esclave("Jordan");
-		Esclave esc2 = new Esclave("Eric");
+		Esclave esc1 = new Lutin("Jordan",false);
+		Esclave esc2 = new Lutin("Eric",true);
+		Esclave esc3 = new Renne("Rudolph");
 		
 		Traineau traineau = new Traineau(24,100,500000);
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	//demoJpa correspond au nom de notre persistence-unit dans le fichier de conf persistence.xml
@@ -48,6 +59,7 @@ public class Test {
 	em.persist(boss);
 	em.persist(esc1);
 	em.persist(esc2);
+	em.persist(esc3);
 	em.persist(traineau);
 	
 
