@@ -1,5 +1,6 @@
 package test;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -18,8 +19,10 @@ public class Test {
 		
 		Adresse a1 = new Adresse("1","rue de paris","75001","Marseille");
 		Adresse a2 = new Adresse("2","rue de paris","75001","Marseille");
-		Enfant enf1 = new Enfant("Ribeiro","Mathias",false);
-		Enfant enf2 = new Enfant("Feroldi","Thomas",true);
+		
+		
+		Enfant enf1 = new Enfant("Ribeiro","Mathias",false,a1);
+		Enfant enf2 = new Enfant("Feroldi","Thomas",true,a2);
 		Jouet jouet1 = new Jouet("Velociraptor",500.50,Categorie.Peluche);
 		Jouet jouet2 = new Jouet("Pomme",0.50,Categorie.Autre);
 		
@@ -35,17 +38,23 @@ public class Test {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("demoJPA");
 	
 
+	EntityManager em = emf.createEntityManager();
+	em.getTransaction().begin();
 	
+	em.persist(enf1);
+	em.persist(enf2);
+	em.persist(jouet1);
+	em.persist(jouet2);
+	em.persist(boss);
+	em.persist(esc1);
+	em.persist(esc2);
+	em.persist(traineau);
 	
+
+	em.getTransaction().commit();
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	em.close();
+
 	
 	emf.close();
 
