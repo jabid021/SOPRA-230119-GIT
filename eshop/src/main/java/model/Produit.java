@@ -1,17 +1,24 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="product")
 public class Produit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_product")
 	private Integer id;
+	@Column(name="label",nullable = false,length=40)
 	private String libelle;
+	@Column(name="price",nullable = false,columnDefinition = "DECIMAL(6,2)")
 	private double prix;
 	
 	
