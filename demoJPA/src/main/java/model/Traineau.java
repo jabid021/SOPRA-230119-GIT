@@ -18,6 +18,8 @@ public class Traineau {
 	private	int clochettes;
 	private double poids;
 	
+	
+	
 	public Traineau() {
 	}
 	public Traineau(int autonomie, int clochettes, double poids) {

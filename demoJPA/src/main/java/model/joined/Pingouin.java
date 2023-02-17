@@ -1,7 +1,16 @@
 package model.joined;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CollectionId;
+
+//@Entity
+@Table(name="pingouin")
 public class Pingouin extends Animal{
 
+	@Column(nullable = false)
 	private String couleur;
 
 	public Pingouin() {}

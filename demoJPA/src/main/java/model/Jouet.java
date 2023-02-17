@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,12 +26,18 @@ public class Jouet {
 	@Enumerated(EnumType.STRING)
 	private Categorie categorie;
 	
+	
+	@ManyToOne
+	private Lutin createur;
+	
+	
 	public Jouet() {}
 	
-	public Jouet(String libelle, double prix, Categorie categorie) {
+	public Jouet(String libelle, double prix, Categorie categorie,Lutin createur) {
 		this.libelle = libelle;
 		this.prix = prix;
 		this.categorie = categorie;
+		this.createur=createur;
 	}
 
 	public String getLibelle() {
@@ -66,12 +73,24 @@ public class Jouet {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	
+
+	public Lutin getCreateur() {
+		return createur;
+	}
+
+	public void setCreateur(Lutin createur) {
+		this.createur = createur;
+	}
 
 	@Override
 	public String toString() {
-		return "Jouet [id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", categorie=" + categorie + "]";
+		return "Jouet [id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", categorie=" + categorie
+				+ ", createur=" + createur + "]";
 	}
 
+	
 	
 	
 	

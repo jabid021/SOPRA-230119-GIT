@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,12 +19,16 @@ public class Dictateur {
 	private boolean cheminee;
 	
 	
+	@OneToOne
+	private Traineau traineau;
+	
 	public Dictateur() {}
 	
-	public Dictateur(String prenom, String nom, boolean cheminee) {
+	public Dictateur(String prenom, String nom, boolean cheminee,Traineau traineau) {
 		this.prenom = prenom;
 		this.nom = nom;
 		this.cheminee = cheminee;
+		this.traineau= traineau;
 	}
 	public String getPrenom() {
 		return prenom;
@@ -52,11 +57,22 @@ public class Dictateur {
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return "Dictateur [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", cheminee=" + cheminee + "]";
+	
+	public Traineau getTraineau() {
+		return traineau;
 	}
 
+	public void setTraineau(Traineau traineau) {
+		this.traineau = traineau;
+	}
+
+	@Override
+	public String toString() {
+		return "Dictateur [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", cheminee=" + cheminee + ", traineau="
+				+ traineau + "]";
+	}
+
+	
 	
 	
 	

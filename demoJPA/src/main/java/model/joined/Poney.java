@@ -1,5 +1,12 @@
 package model.joined;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+//@Entity
+@Table(name="poney")
 public class Poney  extends Animal{
 
 	private int sabot;

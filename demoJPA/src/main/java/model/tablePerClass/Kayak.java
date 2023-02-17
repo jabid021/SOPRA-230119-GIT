@@ -1,5 +1,8 @@
 package model.tablePerClass;
 
+import javax.persistence.Entity;
+
+//@Entity
 public class Kayak extends Vehicule {
 
 	private String couleur;

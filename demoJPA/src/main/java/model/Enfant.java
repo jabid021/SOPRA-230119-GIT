@@ -1,12 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 //Obligatoire
@@ -29,6 +32,10 @@ public class Enfant {
 	
 	@Embedded
 	private Adresse adresse;
+	
+	
+	@ManyToMany
+	private List<Jouet> demandes = new ArrayList();
 	
 	//Obligatoire
 	public Enfant() {}
@@ -78,6 +85,17 @@ public class Enfant {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
+
+	
+	public List<Jouet> getDemandes() {
+		return demandes;
+	}
+
+	public void setDemandes(List<Jouet> demandes) {
+		this.demandes = demandes;
+	}
+	
+	
 
 	@Override
 	public String toString() {
