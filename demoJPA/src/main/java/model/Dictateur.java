@@ -17,7 +17,7 @@ public class Dictateur {
 	private Integer id;
 	private String prenom;
 	private String nom;
-	private boolean cheminee;
+	private transient boolean cheminee;
 	
 	
 	@OneToOne
