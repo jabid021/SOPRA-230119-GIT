@@ -1,11 +1,11 @@
 package model;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,19 +16,30 @@ public class Produit {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_product")
 	private Integer id;
+	
+	
+	
+	
 	@Column(name="label",nullable = false,length=40)
 	private String libelle;
 	@Column(name="price",nullable = false,columnDefinition = "DECIMAL(6,2)")
 	private double prix;
 	
 	
+	
+	
+	@ManyToOne
+	private Fournisseur fournisseur;
+	
+	
 	public Produit() {
 	}
 
 
-	public Produit(String libelle, double prix) {
+	public Produit(String libelle, double prix,Fournisseur fournisseur) {
 		this.libelle = libelle;
 		this.prix = prix;
+		this.fournisseur=fournisseur;
 	}
 
 
@@ -64,8 +75,9 @@ public class Produit {
 
 	@Override
 	public String toString() {
-		return "Produit [id=" + id + ", libelle=" + libelle + ", prix=" + prix + "]";
+		return "Produit [id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", fournisseur=" + fournisseur + "]";
 	}
-	
+
+
 	
 }

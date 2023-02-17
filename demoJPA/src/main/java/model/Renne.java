@@ -2,13 +2,16 @@ package model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue("reindeer")
 public class Renne extends Esclave{
 	
+	
 	@ManyToOne
+	@JoinColumn(name="traineau")
 	private Traineau traineau;
 	
 

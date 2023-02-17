@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -28,6 +29,7 @@ public class Jouet {
 	
 	
 	@ManyToOne
+	@JoinColumn(name="elf",nullable=false)
 	private Lutin createur;
 	
 	

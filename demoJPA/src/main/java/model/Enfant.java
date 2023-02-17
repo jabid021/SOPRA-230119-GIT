@@ -1,7 +1,8 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -9,12 +10,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 //Obligatoire
 @Entity
-@Table(name="kid")
+@Table(name="kid",uniqueConstraints = @UniqueConstraint(columnNames = { "lastname","firstname","bad"}))
+
 public class Enfant {
 	
 	//Obligatoire
@@ -35,7 +40,13 @@ public class Enfant {
 	
 	
 	@ManyToMany
-	private List<Jouet> demandes = new ArrayList();
+	@JoinTable(
+			name="demandes",
+			joinColumns = @JoinColumn(name="enfant"),
+			inverseJoinColumns =@JoinColumn(name="jouet"),
+			uniqueConstraints = @UniqueConstraint(columnNames = { "enfant","jouet" })
+			)
+	private Set<Jouet> demandes = new HashSet();
 	
 	//Obligatoire
 	public Enfant() {}
@@ -87,11 +98,11 @@ public class Enfant {
 	}
 
 	
-	public List<Jouet> getDemandes() {
+	public Set<Jouet> getDemandes() {
 		return demandes;
 	}
 
-	public void setDemandes(List<Jouet> demandes) {
+	public void setDemandes(Set<Jouet> demandes) {
 		this.demandes = demandes;
 	}
 	

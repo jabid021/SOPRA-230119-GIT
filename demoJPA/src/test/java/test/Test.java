@@ -33,11 +33,13 @@ public class Test {
 		Lutin esc2 = new Lutin("Eric",true);
 		
 		Enfant enf1 = new Enfant("Ribeiro","Mathias",false,a1);
+		Enfant enf3 = new Enfant("Ribeiro","Mathias",true,a1);
 		Enfant enf2 = new Enfant("Feroldi","Thomas",true,a2);
 		Jouet jouet1 = new Jouet("Velociraptor",500.50,Categorie.Peluche,esc1);
 		Jouet jouet2 = new Jouet("Pomme",0.50,Categorie.Autre,esc2);
 		
 		enf1.getDemandes().add(jouet1);
+		enf1.getDemandes().add(jouet2);
 		enf2.getDemandes().add(jouet2); 
 		
 		Traineau traineau = new Traineau(24,100,500000);
@@ -83,6 +85,7 @@ public class Test {
 	
 	em.persist(enf1);
 	em.persist(enf2);
+	em.persist(enf3);
 	
 	em.persist(traineau);
 	
@@ -95,12 +98,7 @@ public class Test {
 	
 	em.close();
 
-	
-	em = emf.createEntityManager();
-	
-	System.out.println(em.find(Dictateur.class, 1));
-	em.close();
-	
+
 	emf.close();
 
 	}
