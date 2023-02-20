@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +35,9 @@ public class Jouet {
 	@JoinColumn(name="elf",nullable=false)
 	private Lutin createur;
 	
+	
+	@OneToMany(mappedBy = "jouet")
+	private Set<Demande> demandes;
 	
 	public Jouet() {}
 	
@@ -84,6 +90,16 @@ public class Jouet {
 
 	public void setCreateur(Lutin createur) {
 		this.createur = createur;
+	}
+	
+	
+
+	public Set<Demande> getDemandes() {
+		return demandes;
+	}
+
+	public void setDemandes(Set<Demande> demandes) {
+		this.demandes = demandes;
 	}
 
 	@Override

@@ -1,11 +1,13 @@
 package model;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,10 +21,18 @@ public class Traineau {
 	private	int clochettes;
 	private double poids;
 	
+	@OneToOne(mappedBy = "traineau")
+	private Dictateur conducteur;
+	
+	
+	@OneToMany(mappedBy="traineau")
+	private List<Renne> attelage;
+	
 	
 	
 	public Traineau() {
 	}
+	
 	public Traineau(int autonomie, int clochettes, double poids) {
 		this.autonomie = autonomie;
 		this.clochettes = clochettes;
@@ -59,11 +69,31 @@ public class Traineau {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	
+	public Dictateur getConducteur() {
+		return conducteur;
+	}
+
+	public void setConducteur(Dictateur conducteur) {
+		this.conducteur = conducteur;
+	}
+	
+
+	public List<Renne> getAttelage() {
+		return attelage;
+	}
+
+	public void setAttelage(List<Renne> attelage) {
+		this.attelage = attelage;
+	}
+
 	@Override
 	public String toString() {
 		return "Traineau [id=" + id + ", autonomie=" + autonomie + ", clochettes=" + clochettes + ", poids=" + poids
 				+ "]";
 	}
+
 	
 	
 	

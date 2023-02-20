@@ -6,6 +6,7 @@ import javax.persistence.Persistence;
 
 import model.Adresse;
 import model.Categorie;
+import model.Demande;
 import model.Dictateur;
 import model.Enfant;
 import model.Esclave;
@@ -13,12 +14,10 @@ import model.Jouet;
 import model.Lutin;
 import model.Renne;
 import model.Traineau;
-import model.joined.Animal;
 import model.joined.Autruche;
 import model.joined.Pingouin;
 import model.joined.Poney;
 import model.tablePerClass.Kayak;
-import model.tablePerClass.Vehicule;
 import model.tablePerClass.Voiture;
 
 public class Test {
@@ -38,9 +37,13 @@ public class Test {
 		Jouet jouet1 = new Jouet("Velociraptor",500.50,Categorie.Peluche,esc1);
 		Jouet jouet2 = new Jouet("Pomme",0.50,Categorie.Autre,esc2);
 		
-		enf1.getDemandes().add(jouet1);
-		enf1.getDemandes().add(jouet2);
-		enf2.getDemandes().add(jouet2); 
+		//enf1.getDemandes().add(jouet1);
+		//enf1.getDemandes().add(jouet2);
+		//enf2.getDemandes().add(jouet2); 
+		
+		Demande demande1 = new Demande(enf1,jouet1);
+		Demande demande2 = new Demande(enf1,jouet2);
+		Demande demande3 = new Demande(enf2,jouet2);
 		
 		Traineau traineau = new Traineau(24,100,500000);
 		
@@ -91,13 +94,19 @@ public class Test {
 	
 	em.persist(boss);
 
-	
+	em.persist(demande1);
+	em.persist(demande2);
+	em.persist(demande3);
 	
 
 	em.getTransaction().commit();
 	
 	em.close();
 
+	em=emf.createEntityManager();
+	System.out.println(em.find(Traineau.class, 1).getAttelage());
+	
+	em.close();
 
 	emf.close();
 

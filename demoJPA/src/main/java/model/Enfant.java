@@ -1,7 +1,5 @@
 package model;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -39,14 +35,17 @@ public class Enfant {
 	private Adresse adresse;
 	
 	
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(
 			name="demandes",
 			joinColumns = @JoinColumn(name="enfant"),
 			inverseJoinColumns =@JoinColumn(name="jouet"),
 			uniqueConstraints = @UniqueConstraint(columnNames = { "enfant","jouet" })
 			)
-	private Set<Jouet> demandes = new HashSet();
+	private Set<Jouet> demandes = new HashSet();*/
+	
+	@OneToMany(mappedBy = "enfant")
+	private Set<Demande> demandes;
 	
 	//Obligatoire
 	public Enfant() {}
@@ -98,11 +97,11 @@ public class Enfant {
 	}
 
 	
-	public Set<Jouet> getDemandes() {
+	public Set<Demande> getDemandes() {
 		return demandes;
 	}
 
-	public void setDemandes(Set<Jouet> demandes) {
+	public void setDemandes(Set<Demande> demandes) {
 		this.demandes = demandes;
 	}
 	
