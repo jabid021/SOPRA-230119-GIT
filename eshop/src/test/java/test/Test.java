@@ -6,10 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import model.Achat;
 import model.Adresse;
 import model.Client;
 import model.Fournisseur;
-import model.Personne;
 import model.Produit;
 
 public class Test {
@@ -24,8 +24,10 @@ public class Test {
 		Produit p1 = new Produit("Formation SQL",1500,f1);
 		Produit p2 = new Produit("Formation Java",2500,f1);
 		
-		c1.getProduits().add(p1);	
-		c1.getProduits().add(p2);	
+		
+		Achat ac1 = new Achat(c1,p1);
+		Achat ac2 = new Achat(c1,p2);
+		
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("eshopUnit");
 		
@@ -40,6 +42,10 @@ public class Test {
 
 		em.persist(c1);
 
+		em.persist(ac1);
+		em.persist(ac2);
+		
+		
 		em.getTransaction().commit();
 		
 		em.close();

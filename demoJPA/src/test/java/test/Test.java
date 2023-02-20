@@ -78,7 +78,7 @@ public class Test {
 	em.getTransaction().begin();
 	
 	
-	em.persist(esc1);
+	/*em.persist(esc1);
 	em.persist(esc2);
 	em.persist(esc3);
 	
@@ -97,7 +97,7 @@ public class Test {
 	em.persist(demande1);
 	em.persist(demande2);
 	em.persist(demande3);
-	
+	*/
 
 	em.getTransaction().commit();
 	
