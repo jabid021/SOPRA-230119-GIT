@@ -1,12 +1,23 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Adresse {
+	@Column(length=10,nullable = false)
 	private String numero;
+	@Column(length=40,nullable = false)
 	private String voie;
+	@Column(length=50,nullable = false)
 	private String ville;
+	@Column(length=15,nullable = false)
 	private String cp;
+	@Column(length=30,nullable = false)
 	private String pays;
-	
+
+	public Adresse() {
+	}
 	public Adresse(String numero, String voie, String ville, String cp, String pays) {
 		this.numero = numero;
 		this.voie = voie;
@@ -14,7 +25,7 @@ public class Adresse {
 		this.cp = cp;
 		this.pays = pays;
 	}
-	
+
 	public String getNumero() {
 		return numero;
 	}

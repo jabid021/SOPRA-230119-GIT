@@ -1,14 +1,36 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="compte")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_compte",columnDefinition = "ENUM('admin', 'ranger', 'client')")
 public abstract class Compte {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
+	@Column(length = 25,nullable = false)
 	protected String login;
+	@Column(length = 125,nullable = false)
 	protected String password;
+	@Column(length = 50,nullable = false)
 	protected String nom;
+	@Column(length = 50,nullable = false)
 	protected String prenom;
 
 
+	public Compte() {
 
+	}
 	public Compte(Integer id,String login, String password, String nom, String prenom) {
 		this.id=id;
 		this.login = login;
@@ -16,7 +38,7 @@ public abstract class Compte {
 		this.nom = nom;
 		this.prenom = prenom;
 	}
-	
+
 	public Compte(String login, String password, String nom, String prenom) {
 		this.login = login;
 		this.password = password;
@@ -64,5 +86,5 @@ public abstract class Compte {
 		this.id = id;
 	}
 
-	
+
 }

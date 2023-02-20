@@ -1,8 +1,12 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Tourisme extends Activite {
 
-	
+	public Tourisme() {
+	}
 	public Tourisme(Integer id,boolean guide, double prix, int duree, Biome biome, Vehicule vehicule) {
 		super(id,guide, prix, duree, biome, vehicule);
 	}

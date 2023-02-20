@@ -1,14 +1,31 @@
 package model;
 
-public class Client extends Compte{
-	private Adresse adresse;
+import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue("client")
+public class Client extends Compte{
+	@Embedded
+	private Adresse adresse;
+	
+
+	@OneToMany(mappedBy = "client")
+	private List<Reservation> reservations;
+	
+	public Client() {
+
+	}
 	public Client(Integer id,String login, String password, String nom, String prenom, Adresse adresse) {
 		super(id,login, password, nom, prenom);
 		this.adresse = adresse;
 	}
 
-	
+
 	public Client(String login, String password, String nom, String prenom, Adresse adresse) {
 		super(login, password, nom, prenom);
 		this.adresse = adresse;
@@ -23,12 +40,18 @@ public class Client extends Compte{
 	}
 
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", login=" + login + ", password=" + password + ", nom=" + nom + ", prenom="
 				+ prenom + ", adresse=" + adresse + "]";
 	}
 
-	
-	
+
+
 }

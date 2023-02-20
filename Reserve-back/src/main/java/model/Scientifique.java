@@ -1,8 +1,11 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Scientifique extends Activite {
 
-	
+	public Scientifique() {}
 	public Scientifique(Integer id,boolean guide, double prix, int duree, Biome biome, Vehicule vehicule) {
 		super(id,guide, prix, duree, biome, vehicule);
 	}

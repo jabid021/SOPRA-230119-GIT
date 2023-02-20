@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class Traineau {
 	private Dictateur conducteur;
 	
 	
-	@OneToMany(mappedBy="traineau")
+	@OneToMany(mappedBy="traineau",fetch = FetchType.EAGER)
 	private List<Renne> attelage;
 	
 	

@@ -1,14 +1,41 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="biome")
 public class Biome implements Serializable  {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(length = 25,nullable=false)
 	private String nom;
 	private int superficie;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false ,columnDefinition ="ENUM('Foret', 'Aquatique', 'Montagne', 'Voliere')" )
 	private Zone zone;
 
+	
+
+	@OneToMany(mappedBy = "biome")
+	private List<Activite> activites;
+	
+
+	@OneToMany(mappedBy = "biome")
+	private List<Espece> especes;
+	
+	public Biome() {}
 	
 	public Biome(Integer id,String nom, int superficie, Zone zone) {
 		this.id=id;
@@ -64,6 +91,25 @@ public class Biome implements Serializable  {
 		this.id = id;
 	}
 
+	
+
+	public List<Activite> getActivites() {
+		return activites;
+	}
+
+	public void setActivites(List<Activite> activites) {
+		this.activites = activites;
+	}
+	
+	
+
+	public List<Espece> getEspeces() {
+		return especes;
+	}
+
+	public void setEspeces(List<Espece> especes) {
+		this.especes = especes;
+	}
 
 	@Override
 	public String toString() {

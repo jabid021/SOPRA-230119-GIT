@@ -3,16 +3,40 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="reservation")
 public class Reservation {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private int effectif;
+	@Column(nullable = false,columnDefinition = "DECIMAL(5,2)")
 	private double prix;
 	private LocalDate jour;
 	private LocalTime heure;
+	
+	@ManyToOne
+	@JoinColumn(name="client",nullable = false)
 	private Client client;
+	@ManyToOne
+	@JoinColumn(name="ranger")
 	private Ranger ranger;
+	@ManyToOne
+	@JoinColumn(name="activite",nullable = false)
 	private Activite activite;
 
+	public Reservation() {
+	}
+	
 	public Reservation(Integer id,int effectif, double prix, LocalDate jour, LocalTime heure, Client client, Activite activite) {
 		this.id=id;
 		this.effectif = effectif;

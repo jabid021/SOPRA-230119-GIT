@@ -1,7 +1,12 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Vegetal extends Espece {
 
+	public Vegetal() {
+	}
 	public Vegetal(Integer id,String nom, int effectif, int indiceProtection, Biome biome) {
 		super(id,nom, effectif, indiceProtection, biome);
 	}
@@ -16,6 +21,6 @@ public class Vegetal extends Espece {
 				+ indiceProtection + ", biome=" + biome + "]";
 	}
 
-	
+
 
 }
