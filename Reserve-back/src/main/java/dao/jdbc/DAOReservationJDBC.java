@@ -1,4 +1,4 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,17 +9,18 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.IDAO;
 import model.Activite;
 import model.Client;
 import model.Ranger;
 import model.Reservation;
 
-public class DAOReservation implements IDAO<Reservation,Integer>{
+public class DAOReservationJDBC implements IDAO<Reservation,Integer>{
 
 	@Override
 	public Reservation findById(Integer id) {
-		DAOCompte daoC = new DAOCompte();
-		DAOActivite daoA = new DAOActivite();
+		DAOCompteJDBC daoC = new DAOCompteJDBC();
+		DAOActiviteJDBC daoA = new DAOActiviteJDBC();
 		
 		Reservation r =null;
 		try {
@@ -56,8 +57,8 @@ public class DAOReservation implements IDAO<Reservation,Integer>{
 
 	@Override
 	public List<Reservation> findAll() {
-		DAOCompte daoC = new DAOCompte();
-		DAOActivite daoA = new DAOActivite();
+		DAOCompteJDBC daoC = new DAOCompteJDBC();
+		DAOActiviteJDBC daoA = new DAOActiviteJDBC();
 		List<Reservation> reservations = new ArrayList();
 		Reservation r =null;
 
@@ -93,7 +94,6 @@ public class DAOReservation implements IDAO<Reservation,Integer>{
 		return reservations;
 	}
 
-	@Override
 	public void insert(Reservation r) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -124,7 +124,6 @@ public class DAOReservation implements IDAO<Reservation,Integer>{
 		}
 	}
 
-	@Override
 	public void update(Reservation r) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -178,8 +177,8 @@ public class DAOReservation implements IDAO<Reservation,Integer>{
 	
 	public List<Reservation> findAllByClient(Integer idClient) 
 	{
-		DAOCompte daoC = new DAOCompte();
-		DAOActivite daoA = new DAOActivite();
+		DAOCompteJDBC daoC = new DAOCompteJDBC();
+		DAOActiviteJDBC daoA = new DAOActiviteJDBC();
 		List<Reservation> reservations = new ArrayList();
 		Reservation r =null;
 
@@ -221,8 +220,8 @@ public class DAOReservation implements IDAO<Reservation,Integer>{
 
 	public List<Reservation> findAllByRanger(Integer idRanger) 
 	{
-		DAOCompte daoC = new DAOCompte();
-		DAOActivite daoA = new DAOActivite();
+		DAOCompteJDBC daoC = new DAOCompteJDBC();
+		DAOActiviteJDBC daoA = new DAOActiviteJDBC();
         List<Reservation> reservationsR = new ArrayList();
         Reservation r =null;
 
@@ -257,6 +256,12 @@ public class DAOReservation implements IDAO<Reservation,Integer>{
         }
 
         return reservationsR;
+	}
+
+	@Override
+	public Reservation save(Reservation o) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

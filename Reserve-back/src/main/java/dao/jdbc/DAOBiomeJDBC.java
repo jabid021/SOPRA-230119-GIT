@@ -1,4 +1,4 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,10 +7,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.IDAO;
 import model.Biome;
 import model.Zone;
 
-public class DAOBiome implements IDAO<Biome,Integer>{
+public class DAOBiomeJDBC implements IDAO<Biome,Integer>{
 
 	@Override
 	public Biome findById(Integer id) {
@@ -72,7 +73,7 @@ public class DAOBiome implements IDAO<Biome,Integer>{
 		return biome;
 	}
 
-	@Override
+	
 	public void insert(Biome b) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -94,7 +95,7 @@ public class DAOBiome implements IDAO<Biome,Integer>{
 		}
 	}
 
-	@Override
+	
 	public void update(Biome b) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -131,6 +132,12 @@ public class DAOBiome implements IDAO<Biome,Integer>{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Biome save(Biome o) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,4 +1,4 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,18 +9,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import context.Singleton;
+import dao.IDAOCompte;
+import dao.IDAOPatient;
+import dao.IDAOVisite;
 import model.Medecin;
 import model.Patient;
 import model.Visite;
 
-public class DAOVisite implements IDAO<Visite,Integer> {
+public class DAOVisiteJDBC implements IDAOVisite {
 
 	@Override
 	public Visite findById(Integer id) {
-		 DAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
-		 DAOPatient daoPatient= Singleton.getInstance().getDaoPatient();
+		IDAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
+		IDAOPatient daoPatient= Singleton.getInstance().getDaoPatient();
 		 
 		Visite v =null;
 		try {
@@ -50,8 +52,8 @@ public class DAOVisite implements IDAO<Visite,Integer> {
 
 	@Override
 	public List<Visite> findAll() {
-		DAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
-		DAOPatient daoPatient= Singleton.getInstance().getDaoPatient();
+		IDAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
+		IDAOPatient daoPatient= Singleton.getInstance().getDaoPatient();
 		List<Visite> visites = new ArrayList();
 
 		try {
@@ -77,7 +79,6 @@ public class DAOVisite implements IDAO<Visite,Integer> {
 		return visites;
 	}
 
-	@Override
 	public void insert(Visite v) {
 
 		try {
@@ -106,7 +107,6 @@ public class DAOVisite implements IDAO<Visite,Integer> {
 		}
 	}
 
-	@Override
 	public void update(Visite v) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -150,8 +150,8 @@ public class DAOVisite implements IDAO<Visite,Integer> {
 
 	public List<Visite> findAllByPatient(Integer id)
 	{
-		DAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
-		DAOPatient daoPatient= Singleton.getInstance().getDaoPatient();
+		IDAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
+		IDAOPatient daoPatient= Singleton.getInstance().getDaoPatient();
 		List<Visite> visites = new ArrayList();
 
 		try {
@@ -176,6 +176,20 @@ public class DAOVisite implements IDAO<Visite,Integer> {
 			e.printStackTrace();
 		}
 		return visites;
+	}
+
+
+	@Override
+	public Visite save(Visite o) {
+		if(o.getNumero()!=null) 
+		{
+			update(o);
+		}
+		else 
+		{
+			insert(o);
+		}
+		return o;
 	}
 
 }

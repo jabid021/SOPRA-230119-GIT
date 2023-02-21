@@ -1,4 +1,4 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,16 +7,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.IDAO;
 import model.Animal;
 import model.Biome;
 import model.Espece;
 import model.Vegetal;
 
-public class DAOEspece implements IDAO<Espece,Integer>{
+public class DAOEspeceJDBC implements IDAO<Espece,Integer>{
 
 	@Override
 	public Espece findById(Integer id) {
-		DAOBiome daoB = new DAOBiome();
+		DAOBiomeJDBC daoB = new DAOBiomeJDBC();
 		Espece espece = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -54,7 +55,7 @@ public class DAOEspece implements IDAO<Espece,Integer>{
 
 	@Override
 	public List<Espece> findAll() {
-		DAOBiome daoB = new DAOBiome();
+		DAOBiomeJDBC daoB = new DAOBiomeJDBC();
 		List<Espece> especes = new ArrayList();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -91,7 +92,6 @@ public class DAOEspece implements IDAO<Espece,Integer>{
 		return especes;
 	}
 
-	@Override
 	public void insert(Espece e) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -131,7 +131,6 @@ public class DAOEspece implements IDAO<Espece,Integer>{
 
 	}
 
-	@Override
 	public void update(Espece e) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -189,6 +188,12 @@ public class DAOEspece implements IDAO<Espece,Integer>{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Espece save(Espece o) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

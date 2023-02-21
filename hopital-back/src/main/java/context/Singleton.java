@@ -1,15 +1,22 @@
 package context;
 
-import dao.DAOCompte;
-import dao.DAOPatient;
-import dao.DAOVisite;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import dao.DAOCompteJPA;
+import dao.DAOPatientJPA;
+import dao.DAOVisiteJPA;
+import dao.IDAOCompte;
+import dao.IDAOPatient;
+import dao.IDAOVisite;
 
 public class Singleton {
 
 	
-	private DAOCompte daoCompte = new DAOCompte();
-	private DAOPatient daoPatient = new DAOPatient();
-	private DAOVisite daoVisite = new DAOVisite();
+	private IDAOCompte daoCompte = new DAOCompteJPA();
+	private IDAOPatient daoPatient = new DAOPatientJPA();
+	private IDAOVisite daoVisite = new DAOVisiteJPA();
+	EntityManagerFactory emf= Persistence.createEntityManagerFactory("hopital");
 	
 	private static Singleton instance=null;
 	
@@ -26,33 +33,45 @@ public class Singleton {
 	}
 
 
-	public DAOCompte getDaoCompte() {
+	public IDAOCompte getDaoCompte() {
 		return daoCompte;
 	}
 
 
-	public void setDaoCompte(DAOCompte daoCompte) {
+	public void setDaoCompte(IDAOCompte daoCompte) {
 		this.daoCompte = daoCompte;
 	}
 
 
-	public DAOPatient getDaoPatient() {
+	public IDAOPatient getDaoPatient() {
 		return daoPatient;
 	}
 
 
-	public void setDaoPatient(DAOPatient daoPatient) {
+	public void setDaoPatient(IDAOPatient daoPatient) {
 		this.daoPatient = daoPatient;
 	}
 
 
-	public DAOVisite getDaoVisite() {
+	public IDAOVisite getDaoVisite() {
 		return daoVisite;
 	}
 
 
-	public void setDaoVisite(DAOVisite daoVisite) {
+	public void setDaoVisite(IDAOVisite daoVisite) {
 		this.daoVisite = daoVisite;
+	}
+
+
+
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
+
+
+
+	public void setEmf(EntityManagerFactory emf) {
+		this.emf = emf;
 	}
 	
 	

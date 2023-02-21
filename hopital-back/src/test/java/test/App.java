@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import context.Singleton;
-import dao.DAOCompte;
-import dao.DAOPatient;
-import dao.DAOVisite;
+import dao.IDAOCompte;
+import dao.IDAOPatient;
+import dao.IDAOVisite;
 import model.Compte;
 import model.Medecin;
 import model.Patient;
@@ -24,9 +24,9 @@ public class App {
 	static LinkedList<Patient> fileAttente = new LinkedList();
 	static Compte connected=null;
 
-	static DAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
-	static DAOPatient daoPatient= Singleton.getInstance().getDaoPatient();
-	static DAOVisite daoVisite = Singleton.getInstance().getDaoVisite();
+	static IDAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
+	static IDAOPatient daoPatient= Singleton.getInstance().getDaoPatient();
+	static IDAOVisite daoVisite = Singleton.getInstance().getDaoVisite();
 	static boolean enPause=false;
 
 	public static String saisieString(String msg) 
@@ -69,7 +69,7 @@ public class App {
 		switch(choix) 
 		{
 		case 1 : seConnecter();break;
-		case 2 : System.exit(0);break;
+		case 2 : Singleton.getInstance().getEmf().close(); System.exit(0);break;
 		}
 
 		menuPrincipal();
@@ -138,7 +138,7 @@ public class App {
 			String nom = saisieString("Saisir nom");
 			String prenom = saisieString("Saisir prenom");
 			p = new Patient(idPatient, nom, prenom);
-			daoPatient.insert(p);
+			daoPatient.save(p);
 			System.out.println("Le patient "+p+" a ete ajoute en bdd");
 		}
 		fileAttente.add(p);
@@ -275,7 +275,7 @@ public class App {
 		}
 		for(Visite v : visites) 
 		{
-			daoVisite.insert(v);
+			v= daoVisite.save(v);
 			System.out.println(v);
 		}
 		visites.clear();

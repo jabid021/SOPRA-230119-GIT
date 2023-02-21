@@ -1,4 +1,4 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,13 +7,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.IDAO;
 import model.Admin;
 import model.Adresse;
 import model.Client;
 import model.Compte;
 import model.Ranger;
 
-public class DAOCompte implements IDAO<Compte,Integer> {
+public class DAOCompteJDBC implements IDAO<Compte,Integer> {
 
 	@Override
 	public Compte findById(Integer id) {
@@ -97,7 +98,6 @@ public class DAOCompte implements IDAO<Compte,Integer> {
 		return comptes;
 	}
 
-	@Override
 	public void insert(Compte c) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -163,7 +163,6 @@ public class DAOCompte implements IDAO<Compte,Integer> {
 		}
 	}
 
-	@Override
 	public void update(Compte c) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -362,6 +361,12 @@ public class DAOCompte implements IDAO<Compte,Integer> {
 
 		return c;
 
+	}
+
+	@Override
+	public Compte save(Compte o) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

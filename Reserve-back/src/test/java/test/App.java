@@ -5,11 +5,11 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
-import dao.DAOActivite;
-import dao.DAOBiome;
-import dao.DAOCompte;
-import dao.DAOEspece;
-import dao.DAOReservation;
+import dao.jdbc.DAOActiviteJDBC;
+import dao.jdbc.DAOBiomeJDBC;
+import dao.jdbc.DAOCompteJDBC;
+import dao.jdbc.DAOEspeceJDBC;
+import dao.jdbc.DAOReservationJDBC;
 import model.Activite;
 import model.Admin;
 import model.Adresse;
@@ -29,11 +29,11 @@ import model.Zone;
 public class App {
 	
 	static Compte connected;
-	static DAOCompte daoC = new DAOCompte();
-	static DAOActivite daoA = new DAOActivite();
-	static DAOBiome daoB = new DAOBiome();
-	static DAOReservation daoR = new DAOReservation();
-	static DAOEspece daoE = new DAOEspece();
+	static DAOCompteJDBC daoC = new DAOCompteJDBC();
+	static DAOActiviteJDBC daoA = new DAOActiviteJDBC();
+	static DAOBiomeJDBC daoB = new DAOBiomeJDBC();
+	static DAOReservationJDBC daoR = new DAOReservationJDBC();
+	static DAOEspeceJDBC daoE = new DAOEspeceJDBC();
 	
 	public static String saisieString(String msg) 
 	{

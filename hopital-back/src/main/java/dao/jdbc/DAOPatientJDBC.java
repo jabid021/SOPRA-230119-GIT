@@ -1,4 +1,4 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.IDAOPatient;
 import model.Patient;
 
-public class DAOPatient implements IDAO<Patient,Integer> {
+public class DAOPatientJDBC implements IDAOPatient {
 
 	@Override
 	public Patient findById(Integer id) {
@@ -63,7 +64,7 @@ public class DAOPatient implements IDAO<Patient,Integer> {
 		return patients;
 	}
 
-	@Override
+	
 	public void insert(Patient p) {
 
 
@@ -85,7 +86,7 @@ public class DAOPatient implements IDAO<Patient,Integer> {
 		}
 	}
 
-	@Override
+	
 	public void update(Patient p) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -122,6 +123,12 @@ public class DAOPatient implements IDAO<Patient,Integer> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Patient save(Patient o) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

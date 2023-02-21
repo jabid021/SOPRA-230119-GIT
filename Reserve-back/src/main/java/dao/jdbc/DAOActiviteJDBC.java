@@ -1,4 +1,4 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,18 +7,19 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.IDAO;
 import model.Activite;
 import model.Biome;
 import model.Scientifique;
 import model.Tourisme;
 import model.Vehicule;
 
-public class DAOActivite implements IDAO<Activite,Integer>{
+public class DAOActiviteJDBC implements IDAO<Activite,Integer>{
 
 	@Override
 	public Activite findById(Integer id) {
 		
-		DAOBiome daoB = new DAOBiome();
+		DAOBiomeJDBC daoB = new DAOBiomeJDBC();
 		Activite a =null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -61,7 +62,7 @@ public class DAOActivite implements IDAO<Activite,Integer>{
 
 	@Override
 	public List<Activite> findAll() {
-		DAOBiome daoB = new DAOBiome();
+		DAOBiomeJDBC daoB = new DAOBiomeJDBC();
 		List<Activite> activites = new ArrayList();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -103,7 +104,7 @@ public class DAOActivite implements IDAO<Activite,Integer>{
 		return activites;
 	}
 
-	@Override
+	
 	public void insert(Activite a) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -158,7 +159,7 @@ public class DAOActivite implements IDAO<Activite,Integer>{
 		}
 	}
 
-	@Override
+	
 	public void update(Activite a) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -231,6 +232,12 @@ public class DAOActivite implements IDAO<Activite,Integer>{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Activite save(Activite o) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
