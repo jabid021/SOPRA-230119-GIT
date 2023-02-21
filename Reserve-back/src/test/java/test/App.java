@@ -5,11 +5,12 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
-import dao.jdbc.DAOActiviteJDBC;
-import dao.jdbc.DAOBiomeJDBC;
-import dao.jdbc.DAOCompteJDBC;
-import dao.jdbc.DAOEspeceJDBC;
-import dao.jdbc.DAOReservationJDBC;
+import context.Singleton;
+import dao.IDAOActivite;
+import dao.IDAOBiome;
+import dao.IDAOCompte;
+import dao.IDAOEspece;
+import dao.IDAOReservation;
 import model.Activite;
 import model.Admin;
 import model.Adresse;
@@ -29,11 +30,11 @@ import model.Zone;
 public class App {
 	
 	static Compte connected;
-	static DAOCompteJDBC daoC = new DAOCompteJDBC();
-	static DAOActiviteJDBC daoA = new DAOActiviteJDBC();
-	static DAOBiomeJDBC daoB = new DAOBiomeJDBC();
-	static DAOReservationJDBC daoR = new DAOReservationJDBC();
-	static DAOEspeceJDBC daoE = new DAOEspeceJDBC();
+	static IDAOCompte daoC = Singleton.getInstance().getDaoCompte();
+	static IDAOActivite daoA = Singleton.getInstance().getDaoActivite();
+	static IDAOBiome daoB = Singleton.getInstance().getDaoBiome();
+	static IDAOReservation daoR = Singleton.getInstance().getDaoReservation();
+	static IDAOEspece daoE = Singleton.getInstance().getDaoEspece();
 	
 	public static String saisieString(String msg) 
 	{
@@ -84,7 +85,7 @@ public class App {
 		{
 		case 1 : seConnecter();break;
 		case 2 : inscription();break;
-		case 3 : System.exit(0);
+		case 3 : Singleton.getInstance().getEmf().close(); System.exit(0);
 		}
 
 		menuPrincipal();
@@ -107,7 +108,7 @@ public class App {
 		String pays = saisieString("Saisir votre pays");
 		Adresse a = new Adresse(numero,voie,ville,cp,pays);
 		Client c = new Client(login,password,nom,prenom,a);
-		daoC.insert(c);
+		daoC.save(c);
 
 	}
 
@@ -211,7 +212,7 @@ public class App {
 			String nom = saisieString("Saisir votre nom");
 			String prenom = saisieString("Saisir votre prenom");
 			Admin a = new Admin(id,login,password,nom,prenom);
-			daoC.update(a);
+			daoC.save(a);
 
 		}
 		else if(compte instanceof Client) 
@@ -227,7 +228,7 @@ public class App {
 			String pays = saisieString("Saisir votre pays");
 			Adresse a = new Adresse(numero,voie,ville,cp,pays);
 			Client c = new Client(id,login,password,nom,prenom,a);
-			daoC.update(c);
+			daoC.save(c);
 		}
 		else if(compte instanceof Ranger) 
 		{
@@ -237,7 +238,7 @@ public class App {
 			String prenom = saisieString("Saisir votre prenom");
 			int anciennete=saisieInt("Saisir votre anciennete");
 			Ranger r = new Ranger(id,login,password,nom,prenom,anciennete);
-			daoC.update(r);
+			daoC.save(r);
 		}
 	}
 
@@ -251,7 +252,7 @@ public class App {
 			String nom = saisieString("Saisir votre nom");
 			String prenom = saisieString("Saisir votre prenom");
 			Admin a = new Admin(login,password,nom,prenom);
-			daoC.insert(a);
+			daoC.save(a);
 
 		}
 		else if(typeCompte.equals("Client")) 
@@ -267,7 +268,7 @@ public class App {
 			String pays = saisieString("Saisir votre pays");
 			Adresse a = new Adresse(numero,voie,ville,cp,pays);
 			Client c = new Client(login,password,nom,prenom,a);
-			daoC.insert(c);
+			daoC.save(c);
 		}
 		if(typeCompte.equals("Ranger")) 
 		{
@@ -277,7 +278,7 @@ public class App {
 			String prenom = saisieString("Saisir votre prenom");
 			int anciennete=saisieInt("Saisir votre anciennete");
 			Ranger r = new Ranger(login,password,nom,prenom,anciennete);
-			daoC.insert(r);
+			daoC.save(r);
 		}
 
 	}
@@ -374,7 +375,7 @@ public class App {
 		String choixZone = saisieString("Saisir le nom de la nouvelle zone : Foret,Aquatique,Montagne,Voliere");
 		Zone zone = Zone.valueOf(choixZone);
 		Biome b =  new Biome (id,nom, superficie, zone);
-		daoB.update(b);
+		daoB.save(b);
 	}
 
 	public static void ajouterBiome() {
@@ -384,7 +385,7 @@ public class App {
 		String choixZone = saisieString("Saisir le nom de la zone : Foret,Aquatique,Montagne,Voliere");
 		Zone zone = Zone.valueOf(choixZone);
 		Biome b =  new Biome (nom, superficie, zone);
-		daoB.insert(b);
+		daoB.save(b);
 	}
 
 	public static void afficherBiomes() {
@@ -460,13 +461,13 @@ public class App {
 			int danger = saisieInt("Saisir l'indice de dangerosité");
 
 			espece = new Animal(id,nom,effectif,indiceProtection,danger,newBiome);
-			daoE.update(espece);
+			daoE.save(espece);
 
 		}
 		else if(espece instanceof Vegetal) 
 		{
 			espece = new Vegetal(id,nom,effectif,indiceProtection,newBiome);
-			daoE.update(espece);
+			daoE.save(espece);
 		}
 
 	}
@@ -491,13 +492,13 @@ public class App {
 			int danger = saisieInt("Saisir l'indice de dangerosité");
 
 			Animal newAnimal = new Animal(nom,effectif,indiceProtection,danger,newBiome);
-			daoE.insert(newAnimal);
+			daoE.save(newAnimal);
 		}
 		else if(typeEspece.equals("Vegetal")) 
 		{
 
 			Vegetal newVegetal = new Vegetal(nom,effectif,indiceProtection,newBiome);
-			daoE.insert(newVegetal);
+			daoE.save(newVegetal);
 		}
 	}
 
@@ -583,13 +584,13 @@ public class App {
 		if(a instanceof Tourisme)
 		{
 			Tourisme t = new Tourisme(id,guide, prix, duree, b, vehicule);
-			daoA.update(t);
+			daoA.save(t);
 		}
 
 
 		else if (a instanceof Scientifique){
 			Scientifique s = new Scientifique(id,guide,prix,duree,b,vehicule);
-			daoA.update(s);
+			daoA.save(s);
 		}
 	}
 
@@ -628,7 +629,7 @@ public class App {
 			a = new Scientifique(0,guide,prix,duree,b,vehicule);
 
 		}
-		daoA.insert(a);
+		daoA.save(a);
 	}
 	public static void afficherActivites() {
 		List<Activite> activites = daoA.findAll();
@@ -717,7 +718,7 @@ public class App {
             }
         }
         
-        daoR.update(reservation);
+        daoR.save(reservation);
     }
 	public static void ajouterReservation() {
 
@@ -757,7 +758,7 @@ public class App {
 		}
 
 
-		 daoR.insert(reservation);
+		 daoR.save(reservation);
 
 
 
@@ -836,6 +837,17 @@ public class App {
         }
     }
 	public static void main(String[] args) {
+		
+		//Plain Old Java Object
+		//Classe POJO / Java Bean / Entity => Classes ayant un constructeur vide + getters et setters
+		//Biome b = daoB.findById(1);
+		//b.setNom(saisieString("Saisir le nom"));
+		
+		//daoB.save(b);
+		
+		
+		//System.out.println(b);
+		
 		menuPrincipal();
 	}
 

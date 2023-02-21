@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IDAO<T,K> {
 
-	String url = "jdbc:mysql://localhost:3306/reserve?characterEncoding=UTF-8";
+	String url = "jdbc:mysql://localhost:3306/hopital?characterEncoding=UTF-8";
 	String loginBdd = "root";
 	String passwordBdd = "";
 	

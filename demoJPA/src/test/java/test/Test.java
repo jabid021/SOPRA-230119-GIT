@@ -80,13 +80,13 @@ public class Test {
 		Traineau t = em.find(Traineau.class, 1);
 
 
-		/*em.getTransaction().begin();
+		em.getTransaction().begin();
 
 
 	em.persist(esc1);
 	em.persist(esc2);
 	em.persist(esc3);
-
+	
 	em.persist(jouet1);
 	em.persist(jouet2);
 
@@ -94,7 +94,7 @@ public class Test {
 	em.persist(enf1);
 	em.persist(enf2);
 	em.persist(enf3);
-
+	
 	em.persist(traineau);
 
 	em.persist(boss);
@@ -103,8 +103,9 @@ public class Test {
 	em.persist(demande2);
 	em.persist(demande3);
 
+	em.remove(boss);
 
-	em.getTransaction().commit();*/
+	em.getTransaction().commit();
 
 		em.close();
 
