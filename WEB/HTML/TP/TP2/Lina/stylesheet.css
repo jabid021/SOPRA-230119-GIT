@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Calligraffitti');
+
+.fonds{
+
+  background: linear-gradient(180deg, rgba(64, 236, 59, 0.42) 0%, rgba(243, 237, 90, 0.41) 54%, #FB8686 100%);
+
+}
+
+h1{
+  font-family: Calligraffitti, cursive;
+  text-align :center;
+  font-size: 35px;
+  color: #4B0082;
+}
+
+table{
+  width: 70%;
+  background-color: #FFFFFF;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #A1A1A1;
+  border-style: solid;
+  color: #000000;
+}
+
+td{
+text-align :center;
+font-family: Verdana, sans-serif;
+width: 70px;
+}
+
+th{
+color: #3B3B3B;
+text-shadow: 5px 5px 10px #3C3939;
+letter-spacing: 5px;
+border:1px solid #b3adad;
+padding:5px;
+background-color: #F7F7F7;
+width: 100px;
+
+}
