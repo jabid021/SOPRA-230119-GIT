@@ -57,10 +57,10 @@
     </select></td></tr>
     <tr><td>Client :</td><td>  <select name="biome">
         <option value="2">2 - RAYONNANT Charles</option>
-    </select></td></tr>  <tr><td>Nombre de personne </td><td><input name="personne" type="number" placeholder="Saisir le nombre de personne"></td></tr>
-      <tr><td>Prix :</td><td>  <input disabled name="prix" type="number" step="0.01" min="0" placeholder="Saisir le prix"></td></tr>
-      <tr><td>Jour :</td><td><input name="Jour" type="date"></td></tr>
-      <tr><td>Heure :</td><td><input  type="time"></td></tr>
+    </select></td></tr>  <tr><td>Nombre de personne </td><td><input required name="personne" type="number" min="1" placeholder="Saisir le nombre de personne"></td></tr>
+      <tr><td>Prix :</td><td>  <input disabled  name="prix" type="number" step="0.01" min="0" placeholder="Saisir le prix"></td></tr>
+      <tr><td>Jour :</td><td><input required name="Jour" type="date"></td></tr>
+      <tr><td>Heure :</td><td><input  required step="3600" type="time"></td></tr>
       <tr><td>Ranger :</td><td><select name="ranger">
         <option value="-1">Pas de ranger</option>
         <option value="3">3 - Patrick Pipenbois</option>
