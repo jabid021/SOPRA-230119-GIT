@@ -6,37 +6,92 @@ suivantes => x + y (la balise y suivant la balise x)
 
 <style>
 
-#content
+  #content
+  {
+    background-color:cyan;
+  }
+
+
+  #content div
+  {
+    font-size:25px;
+    color:red;
+  }
+
+  #content > div
+  {
+    border:solid red 2px;
+  }
+
+  #content > div > div
+  {
+    text-align:center;
+  }
+
+  #content+div
+  {
+    background-color:yellow;
+  }
+
+  #content+div+div
+  {
+    background-color:purple;
+  }
+
+
+#exemple
 {
-  background-color:cyan;
+  background-color:orange;
 }
 
 
-#content div
+#exemple p:nth-of-type(3)
 {
   font-size:25px;
+}
+
+
+#exemple p:nth-child(3)
+{
   color:red;
 }
 
-#content > div
+
+#exemple p:nth-of-type(odd)
 {
-  border:solid red 2px;
+  background-color:green;
 }
 
-#content > div > div
+
+#exemple p:nth-of-type(even)
 {
-  text-align:center;
+  background-color:salmon;
 }
 
-#content+div
-{
-  background-color:yellow;
-}
 
-#content+div+div
+#exemple p:nth-of-type(3n)
 {
   background-color:purple;
 }
+
+
+#exemple p:first-line
+{
+  font-family:fantasy;
+}
+#exemple p:first-letter
+{
+  font-size:40px;
+}
+
+#exemple p:nth-of-type(5):before
+{
+  color:pink;
+  font-size:35;
+  content:"Leeloo ";
+}
+
+
 
 </style>
 
@@ -54,3 +109,18 @@ suivantes => x + y (la balise y suivant la balise x)
 </div>
 <div> Apres 1</div>
 <div> Apres 2</div>
+
+
+
+
+<div id="exemple">
+  <h2>Sous titre</h2>
+  <p>1 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>2 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>4 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>5 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>6 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>7 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>8 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>

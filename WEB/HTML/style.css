@@ -1,0 +1,59 @@
+
+
+
+  @media(max-width:576px)
+  {
+
+    #navTel
+    {
+      display:flex;
+      flex-direction:column;
+    }
+    #navPc
+    {
+      display:none;
+    }
+
+    main
+    {
+      background-color:cyan;
+    }
+  }
+
+
+  @media(min-width:576px) and (max-width:992px)
+  {
+    #navTel
+    {
+      display:none;
+    }
+    #navPc
+    {
+      text-align:center;
+    }
+    main
+    {
+      background-color:orange;
+    }
+  }
+
+
+
+  @media(min-width:992px)
+  {
+    #navTel
+    {
+      display:none;
+    }
+    #navPc
+    {
+      text-align:center;
+    }
+
+    main
+    {
+      height:650px;
+      background-color:grey;
+      overflow:scroll;
+    }
+  }
