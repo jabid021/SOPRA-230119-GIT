@@ -1,0 +1,56 @@
+<!--
+descendants =>  x y (toutes les balises y qui se trouvent dans la balise x)
+enfants direct => x > y
+suivantes => x + y (la balise y suivant la balise x)
+-->
+
+<style>
+
+#content
+{
+  background-color:cyan;
+}
+
+
+#content div
+{
+  font-size:25px;
+  color:red;
+}
+
+#content > div
+{
+  border:solid red 2px;
+}
+
+#content > div > div
+{
+  text-align:center;
+}
+
+#content+div
+{
+  background-color:yellow;
+}
+
+#content+div+div
+{
+  background-color:purple;
+}
+
+</style>
+
+<div> AVANT</div>
+
+<div id="content">
+  <div>Enfant direct 1 </div>
+  <div>Enfant direct 2 </div>
+  <div>
+    <div>+Enfant 3-A</div>
+    <div>+Enfant 3-B</div>
+  </div>
+  <div>Enfant direct 4 </div>
+
+</div>
+<div> Apres 1</div>
+<div> Apres 2</div>
