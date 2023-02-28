@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+
+<script>
+
+
+  var tabPays=
+  [
+  {"nom":"France","capitale":"Marseille"},
+  {"nom":"Italie","capitale":"Rome"},
+  {"nom":"Norvege","capitale":"Oslo"},
+  {"nom":"Angleterre","capitale":"Londres"},
+  {"nom":"Mexique","capitale":"Mexico"}
+  ];
+  var score=0;
+  var taille = tabPays.length;
+  var reponse;
+  var numero=1;
+  for(p of tabPays)
+  {
+    reponse = prompt(numero+" / "+taille+"- Quelle est la capitale du pays suivant : "+p.nom);
+    numero++;
+    if(reponse==p.capitale)
+    {
+      alert("Bonne réponse");
+      score++;
+    }
+    else
+    {
+      alert("Mauvaise réponse");
+    }
+  }
+
+  console.log("Votre score est de "+score+" / "+taille);
+
+
+
+
+
+
+</script>

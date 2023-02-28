@@ -1,0 +1,131 @@
+
+
+<meta charset="utf-8">
+
+<title>Le DOM</title>
+
+<h1 id="titrePage">DOM</h1>
+
+<div monAttribut="saValeur" id="baliseVide"></div>
+<h2 class="elementImportant">Titre à remplacer</h2>
+
+<p class="elementImportant">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<h2>Zog Zog</h2>
+
+<div id="demo">
+  <ul><li>Item 1 </li><li>Item 2 </li></ul>
+</div>
+
+<form>
+  <input type="text" id="login" name="login" placeholder="Saisir login" value="jabid">
+  <select name="os" id="os"><option>MacOs</option><option>Windows</option><option selected>Linux</option></select>
+  <input type="checkbox" id="cgv"> Validé
+
+
+  <input type="submit" value="OK" id="btnOk">
+
+</form>
+
+<script>
+
+
+
+
+  //console.log(document);
+  console.log(document.title);
+  document.title="Nouveau titre";
+
+  console.log(titrePage);
+  pointeurTag();
+
+  function pointeurId()
+  {
+    let maBalise =  document.getElementById("titrePage");
+    let prop = "color";
+
+    //maBalise.style.prop="red"; ne marche pas !
+    maBalise.style.color="red";
+    maBalise.style.fontSize="55px";
+    maBalise.style.backgroundColor="cyan";
+
+
+    maBalise.style.setProperty("background-color","lightgreen");
+
+    //En JS, on peut pointer une balise directement par son id (x.style au lieu de document.getElementById("x"))
+    //Attention a ne pas avoir de variables / fonctions avec le meme nom
+
+    titrePage.style.border="solid purple 2px";
+    //maBalise.style.setProperty(prop,"red"); MARCHE !
+
+    console.log(titrePage.innerHTML);
+    //innerHTML permet d'injecter n'importe quel code html / innerText uniquement du text
+    titrePage.innerHTML+=" (Document Object Model)";
+
+    baliseVide.innerHTML="<a href=''><b>"+titrePage.innerHTML+"</b></a>";
+
+    //baliseVide.innerText="<b>TOTO</b>";
+
+
+    console.log(login.value);
+    login.value="Jaxx";
+
+    //getAttribute => return la value correspondante
+    //setAttribute => modifier / ajoute l'attribut / la value
+    //removeAttribute => retire l'attribut et sa saValeur
+    console.log(baliseVide.getAttribute("monAttribut"));
+    baliseVide.setAttribute("monAttribut","nouvelleValeur");
+    baliseVide.setAttribute("monAttribut2","valeur2");
+    baliseVide.removeAttribute("monAttribut2");
+
+    //login.setAttribute("disabled","disabled");
+    //login.removeAttribute("disabled");
+
+    login.disabled=true;
+    login.required=true;
+    //cgv.checked=true;
+
+    if(cgv.checked)
+    {
+      console.log("cgv est checked");
+    }
+    else
+    {
+      console.log("cgv n'est pas checked");
+    }
+
+    console.log("La value du select est : "+os.value);
+
+    os.value="Windows";
+    os.selected="Windows";
+  }
+
+
+  function pointeurClass()
+  {
+
+    let mesBalises = document.getElementsByClassName("elementImportant");
+    console.log(mesBalises);
+    //mesBalises.style.color="red"; NE MARCHE PAS
+    for(b of mesBalises)
+    {
+      b.style.color="red";
+      b.innerHTML="nouveau contenu";
+    }
+
+  }
+
+  function pointeurTag()
+  {
+
+    let mesBalises = document.getElementsByTagName("h2");
+    console.log(mesBalises);
+    //mesBalises.style.color="red"; NE MARCHE PAS
+    for(b of mesBalises)
+    {
+      b.style.color="red";
+      b.innerHTML="nouveau contenu";
+    }
+
+  }
+</script>
