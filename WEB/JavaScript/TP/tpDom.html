@@ -1,3 +1,4 @@
+
 <meta charset="utf-8">
 
 <body style="background-color: lightyellow;">
@@ -15,3 +16,41 @@
 
 
 </body>
+
+
+<script >
+
+var typeElement = prompt("Saisir le type d'element (id/class/tag)");
+var prop = "color";
+var couleur = prompt("Saisir la couleur");
+
+if(typeElement=="id")
+{
+  //document.getElementById("paragPrinci").style.color=couleur;
+  //paragPrinci.style.color=couleur;
+  paragPrinci.style.setProperty(prop,couleur);
+}
+else if(typeElement=="class")
+{
+  let balises = document.getElementsByClassName("secondaire");
+  for(b of balises)
+  {
+    b.style.setProperty(prop,couleur);
+  }
+}
+else if(typeElement=="tag")
+{
+  let balises = document.getElementsByTagName("p");
+  for(b of balises)
+  {
+    b.style.setProperty(prop,couleur);
+  }
+}
+
+else
+{
+  alert("Ce type d'element "+typeElement+" n'existe pas....");
+}
+
+
+</script>

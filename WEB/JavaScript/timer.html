@@ -1,0 +1,38 @@
+<h1 id="message">Ce paragraphe s'autodetruira dans 5 secondes...</h1>
+
+
+<script>
+
+var cpt=5;
+
+setTimeout(exploser,5000);
+
+/*setTimeout(
+  function()
+  {
+    clearInterval(monInterval);
+  message.innerHTML="BOUM!";
+  message.style.color="red";
+  },
+  5000);
+*/
+
+
+var monInterval =   setInterval(chrono,1000);
+
+function exploser()
+{
+
+  clearInterval(monInterval);
+  message.innerHTML="BOUM!";
+  message.style.color="red";
+}
+
+function chrono()
+{
+  cpt--;
+  message.innerHTML="Ce paragraphe s'autodetruira dans "+cpt+" secondes...";
+}
+
+
+</script>
