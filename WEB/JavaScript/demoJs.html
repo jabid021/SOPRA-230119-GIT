@@ -1,0 +1,196 @@
+<meta charset="utf-8">
+
+
+
+<script>
+
+var nb  = 33; //=> var en js = static en java
+let x; //=> let = variable temporaire (à utiliser dans un for par exemple)
+
+
+var p1 = new Object();
+p1.prenom="Jordan";
+p1.nom="Abid";
+p1.age=29;
+
+
+var p2 = {"prenom": "John","nom":"Doe","age":42};
+var p3 = {"prenom" : "Jane","nom":"Doe"};
+
+var saisie = prompt("saisir l'attribut");
+
+console.log(p2.saisie);
+console.log(p2[saisie]);
+console.log(p2.prenom);
+
+console.log(p2["prenom"]);
+console.log(p3.age);
+
+alert(p1);
+console.log(p1);
+
+
+
+//var notes = new Array();
+var notes = [15,14,7,2,8,1,20];
+var zoom = ["Jordan","John","Toto","Guillaume"];
+var zoomObj=[p1,p2,p3];
+var zoomObj=[
+{"prenom": "John","nom":"Doe","age":42},
+{"prenom": "John","nom":"Doe","age":42},
+{"prenom": "John","nom":"Doe","age":42}
+];
+
+
+for(p of zoomObj)
+{
+  console.log(p.prenom);
+}
+
+//alert(notes);
+
+
+//console.log(zoom[1]);
+zoom[1]="Jane";
+
+
+//ajoute l'element à la fin du tableu
+zoom.push("Julien");
+//ajoute l'element au début du tableu
+zoom.unshift("Elodie");
+
+//Retire le premier element du tableau
+zoom.shift();
+
+//Retire le dernier element du tableau
+zoom.pop();
+//alert(zoom.join("-"));
+
+//Trier le tableau dans l'ordre croissant
+zoom.sort(triNbLettre);
+//Retourner l'ordre du tableau
+//zoom.reverse();
+
+
+console.log(notes);
+notes.sort(triNumerique);
+console.log(notes);
+
+
+for(let i=0;i<zoom.length;i++)
+{
+  console.log(zoom[i]);
+}
+
+console.log("Debut foreach in ");
+
+for(indice in zoom)
+{
+  console.log(zoom[indice]);
+}
+
+console.log("\nDebut foreach of");
+
+for(prenom of zoom)
+{
+  console.log(prenom);
+}
+
+//console.log(zoom[20]);
+
+//zoom[20]="Julien";
+
+console.log(zoom.length);
+//zoom.length=80;
+//zoom.length=8;
+
+
+console.log(zoom[12]);
+console.log(zoom);
+
+
+function triNumerique(a,b)
+{
+  return a-b;
+}
+
+
+function triNbLettre(a,b)
+{
+  return a.length-b.length;
+}
+
+/*var reponse;
+var test = "10";
+test++;
+
+console.log(test);
+
+if(nb==="32")
+{
+  console.log(nb+"===1");
+}
+else
+{
+  console.log(nb+"!=1");
+}
+
+for(let i=0;i<=10;i++)
+{
+  //console.log(i);
+}
+
+console.log("Valeur de nb : "+(nb+1));
+
+switch(nb)
+{
+  case 31 : alert("31");break;
+  case 32 : alert("32");break;
+  default : console.log("Autre");break;
+}
+
+test = (nb>=18)? "Plus grand que 18" : "Plus petit que 18";
+console.log(test);
+
+cpt = 1;
+while(cpt <=10)
+{
+  console.log(cpt);
+  cpt++;
+}
+console.log("boucle suivante");
+do
+{
+    console.log(cpt);
+  cpt++;
+}while(cpt<=20);
+
+
+if(cpt%2==1){console.log("cpt est impair");}
+
+
+do
+{
+  reponse=prompt("Continuer ? y/n");
+}while(reponse=="y");
+
+age = 17;
+age=anniversaire(age);
+console.log(age);
+
+
+anniversaire(age);
+anniversaire();
+anniversaire(age,"roro");
+
+
+
+function anniversaire(a)
+{
+  a++;
+  console.log("Joyeux anniversaire : "+a+"ans !" );
+  return a;
+}
+*/
+
+</script>
