@@ -1,11 +1,18 @@
+<meta charset="utf-8">
+
 <h1 id="message">Ce paragraphe s'autodetruira dans 5 secondes...</h1>
 
-
+<input type="button" value="Désamorcer" id="btnDisarm">
+<input type="button" value="Reprendre" id="btnDie">
 <script>
 
 var cpt=5;
+btnDisarm.onclick=desarmorcer;
+btnDie.onclick=amorcer;
+var decompte;
+var monInterval;
 
-setTimeout(exploser,5000);
+amorcer();
 
 /*setTimeout(
   function()
@@ -17,15 +24,22 @@ setTimeout(exploser,5000);
   5000);
 */
 
-
-var monInterval =   setInterval(chrono,1000);
-
+function amorcer()
+{
+  decompte = setTimeout(exploser,cpt*1000);
+  monInterval =   setInterval(chrono,1000);
+    message.innerHTML="Ce paragraphe s'autodetruira dans "+cpt+" secondes...";
+    message.style.color="black";
+    btnDisarm.disabled=false;
+    btnDie.disabled=true;
+}
 function exploser()
 {
-
   clearInterval(monInterval);
   message.innerHTML="BOUM!";
   message.style.color="red";
+  btnDisarm.disabled=true;
+
 }
 
 function chrono()
@@ -34,5 +48,13 @@ function chrono()
   message.innerHTML="Ce paragraphe s'autodetruira dans "+cpt+" secondes...";
 }
 
-
+function desarmorcer()
+{
+  btnDisarm.disabled=true;
+  message.style.color="green";
+  message.innerHTML="BRAVO INSPECTEUR!";
+  btnDie.disabled=false;
+  clearTimeout(decompte);
+  clearInterval(monInterval);
+}
 </script>
