@@ -1,0 +1,201 @@
+<style>
+
+  #spoil
+  {
+    display:none;
+  }
+
+  #loginColor
+  {
+    display:inline-block;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    background-color:red;
+    position:relative;
+
+  }
+
+  #redCar
+  {
+    position:absolute;
+    bottom:0;
+    right:0;
+    transition: transform 0.8s;
+  }
+</style>
+
+<meta charset="utf-8">
+
+<p title="Ceci est un paragraphe" id="paragPrinci">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<p id="spoil"> CECI EST UN SPOIL</p>
+<br><br><br>
+<p id="parag2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<table border>
+
+  <tr><th>Prenom</th></tr>
+
+  <tbody id="tbody">
+    <tr><td>Jordan</td></tr>
+    <tr><td>Jeremy</td></tr>
+    <tr><td>Julien</td></tr>
+    <tr><td>John</td></tr>
+  </tbody>
+
+
+</table>
+<br><br>
+
+<input type="text" placeholder="saisir prenom" id="prenom" ><input type="button" value="ajouter" id="btnAdd" disabled>
+<div id="loginColor"></div>
+
+
+<br>
+
+<input type="color" id="colorPicker">
+<input type="button" value="reset color" id="btnReset">
+
+
+<div id="redCar"><img id="imgCar" onClick="clickCar()" width="380" src="red.gif"></div>
+<script>
+
+
+  //events souris => click, mousedown,mouseup, dblclick, mouseover, mouseout,mousemove
+  //events clavier => keypress, keydown, keyup
+  //change
+
+  var x = 0;
+  var y = 0;
+
+  var carColor="blue";
+  paragPrinci.onclick = demo;
+  paragPrinci.ondblclick = demo;
+  paragPrinci.onmousedown = demo;
+  paragPrinci.onmouseup = demo;
+
+  paragPrinci.onmouseover = demo;
+  paragPrinci.onmouseout = demo;
+  //paragPrinci.onmousemove = function(){console.log("mouse moove");}
+  btnAdd.onclick=addTab;
+
+  prenom.onkeyup=verifLogin;
+
+  document.body.onkeydown = deplacementCar;
+
+  colorPicker.onchange = function()
+  {
+    tbody.style.color=colorPicker.value;
+  }
+
+  btnReset.onclick= function()
+  {
+    tbody.style.color="black";
+    colorPicker.value="#000000";
+  }
+
+  function deplacementCar(event)
+  {
+    if(event.key=="ArrowDown" || event.key=="s" )
+    {
+      redCar.style.transform="rotate(-90deg)";
+      y-=30;
+    }
+    else if(event.key=="ArrowRight" || event.key=="d" )
+    {
+      redCar.style.transform = "scaleX(-1)";
+      x-=30;
+    }
+
+    else if(event.key=="ArrowLeft" || event.key=="q")
+    {
+      redCar.style.transform = "scaleX(1)";
+      x+=30;
+    }
+
+    else if(event.key=="ArrowUp" || event.key=="z")
+    {
+      redCar.style.transform="rotate(90deg)";
+      y+=30;
+    }
+
+
+    redCar.style.right=x;
+    redCar.style.bottom=y;
+  }
+
+  function clickCar()
+  {
+
+
+    imgCar.setAttribute("src",carColor+".gif");
+    carColor=(carColor=="blue")?"red":"blue";
+  }
+
+  function verifLogin(event)
+  {
+
+    if(prenom.value=="" || prenom.value.length<3)
+    {
+      btnAdd.disabled=true;
+      loginColor.style.backgroundColor="red";
+    }
+    else
+    {
+      btnAdd.disabled=false;
+      loginColor.style.backgroundColor="green";
+      if(event.key=="Enter")
+      {
+        addTab();
+      }
+    }
+  }
+
+
+  function addTab()
+  {
+    tbody.innerHTML+="<tr><td title='"+prenom.value+"'>"+prenom.value+"</td></tr>";
+    prenom.value="";
+    btnAdd.disabled=true;
+    loginColor.style.backgroundColor="red";
+
+  }
+
+  function demo(event)
+  {
+
+    if(event.type=="click")
+    {
+      console.log("click");
+      spoil.style.display="block";
+    }
+    else if(event.type=="dblclick")
+    {
+      console.log("dblClick");
+      spoil.style.display="none";
+    }
+    else if(event.type=="mousedown")
+    {
+      console.log("mousedown");
+    }
+    else if(event.type=="mouseup")
+    {
+      console.log("mouseup");
+
+    }
+    else if(event.type=="mouseover")
+    {
+      console.log("mouseover");
+      parag2.style.color="red";
+    }
+    else if(event.type=="mouseout")
+    {
+      console.log("mouseout");
+      parag2.style.color="black";
+    }
+
+
+  }
+
+</script>
