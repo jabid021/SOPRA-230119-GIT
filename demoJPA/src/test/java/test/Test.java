@@ -33,7 +33,7 @@ public class Test {
 		Lutin esc2 = new Lutin("Eric",true);
 
 		Enfant enf1 = new Enfant("Ribeiro","Mathias",false,a1);
-		Enfant enf3 = new Enfant("Ribeiro","Mathias",true,a1);
+		//Enfant enf3 = new Enfant("Ribeiro","Mathias",true,a1);
 		Enfant enf2 = new Enfant("Feroldi","Thomas",true,a2);
 		Jouet jouet1 = new Jouet("Velociraptor",500.50,Categorie.Peluche,esc1);
 		Jouet jouet2 = new Jouet("Pomme",0.50,Categorie.Autre,esc2);
@@ -93,7 +93,7 @@ public class Test {
 
 	em.persist(enf1);
 	em.persist(enf2);
-	em.persist(enf3);
+	//em.persist(enf3);
 	
 	em.persist(traineau);
 
@@ -172,8 +172,8 @@ public class Test {
 	}
 	public static void main(String[] args) {
 
-		System.out.println(Singleton.getInstance().getDaoJouet().findAll());
-		
+		//System.out.println(Singleton.getInstance().getDaoJouet().findAll());
+		demoJPA();
 		Singleton.getInstance().getEmf().close();
 		
 
