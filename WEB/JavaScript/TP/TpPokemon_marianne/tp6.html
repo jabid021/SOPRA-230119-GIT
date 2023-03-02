@@ -1,0 +1,67 @@
+<style>
+
+  body
+  {
+    background-image : url("assets/img/water.png");
+    background-size:100% 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  #grass
+  {
+    display:none;
+    width:700px;
+    height:700px;
+    background-image : url("assets/img/Grass.png")
+  }
+
+  #pikachu
+  {
+    position:relative;
+    top:0;
+    left:0;
+    display:inline-block;
+  }
+
+  #coin
+  {
+    position:relative;
+    top:510;
+    left:500;
+    display:inline-block;
+  }
+
+  #bulle2{
+    position:relative;
+    top:415;
+    left:440;;
+    background-color: white;
+    border: solid black 1px;
+    display: none;
+  }
+
+  #imgleek{
+    height:30px;
+  }
+  #leek{
+    position:relative;
+    top:40;
+    left:80;
+  }
+
+</style>
+
+
+<script defer src="pikachu.js" charset="utf-8"></script>
+
+<div id="formStart">
+  <input id="inputName" type="text" placeholder="pikachu"  autofocus><input id="btnStart" type="button" value="Start !" disabled>
+</div>
+
+<div id="grass">
+  <div id="pikachu"><img id="imgPikachu" src="assets/img/pikachuDown.png"></div>
+  <div id="coin"><img title="CoinCoin" id="imgCoin" src="assets/img/coincoinDown.png"></div>
+  <div id="bulle2">Coin !</div>
+  <div id="leek"><img id="imgLeek" src="assets/img/leek.png"></div>
+</div>
