@@ -50,6 +50,14 @@ public class Enfant {
 	//Obligatoire
 	public Enfant() {}
 	
+	public Enfant(Integer id,String nom, String prenom, boolean mechant,Adresse adresse) {
+		this.id=id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mechant = mechant;
+		this.adresse = adresse;
+	}
+	
 	public Enfant(String nom, String prenom, boolean mechant,Adresse adresse) {
 		this.nom = nom;
 		this.prenom = prenom;

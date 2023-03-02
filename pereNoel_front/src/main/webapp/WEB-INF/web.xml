@@ -7,12 +7,12 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>EnfantController</display-name>
-    <servlet-name>EnfantController</servlet-name>
-    <servlet-class>controller.EnfantController</servlet-class>
+    <display-name>TraineauController</display-name>
+    <servlet-name>TraineauController</servlet-name>
+    <servlet-class>controller.TraineauController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EnfantController</servlet-name>
-    <url-pattern>/EnfantController</url-pattern>
+    <servlet-name>TraineauController</servlet-name>
+    <url-pattern>/TraineauController</url-pattern>
   </servlet-mapping>
 </web-app>
