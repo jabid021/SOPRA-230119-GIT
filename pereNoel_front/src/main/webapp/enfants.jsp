@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,6 @@
 <title>Gestion des enfants</title>
 </head>
 <body>
-
 
 
 <div id="content">
@@ -30,42 +31,23 @@
       </tr>
     </thead>
     <tbody>
+    
+  
+    <c:forEach items="${enfants}" var="enfant">
+    
       <tr>
-        <td>${enfants[0].id}</td>
-        <td>${enfants[0].nom}</td>
-        <td>${enfants[0].prenom}</td>
-        <td>${enfants[0].mechant}</td>
-        <td>${enfants[0].adresse.numero}, ${enfants[0].adresse.voie}, ${enfants[0].adresse.ville} ${enfants[0].adresse.cp}</td>
+        <td>${enfant.id}</td>
+        <td>${enfant.nom}</td>
+        <td>${enfant.prenom}</td>
+        <td>${enfant.mechant}</td>
+        <td>${enfant.adresse.numero}, ${enfant.adresse.voie}, ${enfant.adresse.ville} ${enfant.adresse.cp}</td>
         <td>
-          <a href="enfant?id=${enfants[0].id}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-          <a href="enfant?id=${enfants[0].id}&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
+          <a href="enfant?id=${enfant.id}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
+          <a href="enfant?id=${enfant.id}&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
         </td>
       </tr>
-
-      <tr>
-        <td>${enfants[1].id}</td>
-        <td>${enfants[1].nom}</td>
-        <td>${enfants[1].prenom}</td>
-        <td>${enfants[1].mechant}</td>
-        <td>${enfants[1].adresse.numero}, ${enfants[1].adresse.voie}, ${enfants[1].adresse.ville} ${enfants[1].adresse.cp}</td>
-        <td>
-          <a href="enfant?id=${enfants[1].id}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-          <a href="enfant?id=${enfants[1].id}&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
-        </td>
-      </tr>
-      
-      
-       <tr>
-        <td>${enfants[2].id}</td>
-        <td>${enfants[2].nom}</td>
-        <td>${enfants[2].prenom}</td>
-        <td>${enfants[2].mechant}</td>
-        <td>${enfants[2].adresse.numero}, ${enfants[2].adresse.voie}, ${enfants[2].adresse.ville} ${enfants[2].adresse.cp}</td>
-        <td>
-          <a href="enfant?id=${enfants[2].id}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-          <a href="enfant?id=${enfants[2].id}&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
-        </td>
-      </tr>
+    </c:forEach>
+   
     </tbody>
   </table>
 

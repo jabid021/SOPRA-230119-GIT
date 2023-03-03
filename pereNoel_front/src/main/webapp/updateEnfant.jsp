@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +22,21 @@
     <table>
         <tr><td>Nom : </td><td>  <input required value="${enfant.nom}" type='text' name='nom' placeholder='Saisir nom'></td></tr>
         <tr><td>Prenom : </td><td><input required value="${enfant.prenom}" type='text' name='prenom' placeholder='Saisir prénom'></td></tr>
-        <tr><td>Mechant :</td><td><input required type='radio' name='mechant' value='oui'>Oui 
-					<input required type='radio' name='mechant' value='non'>Non </td></tr>
+        <tr><td>Mechant :</td><td>
+       
+        	<c:choose>
+        		<c:when test="${enfant.mechant==true}">
+        		 	<input required type='radio' checked name='mechant' value='oui'>Oui 
+		  			<input required type='radio' name='mechant' value='non'>Non </td>
+        		</c:when>
+        		<c:otherwise>
+        			<input required type='radio'  name='mechant' value='oui'>Oui 
+		  			<input required type='radio' checked name='mechant' value='non'>Non </td>
+        		</c:otherwise>
+        	</c:choose>
+        
+      	 
+		</tr>
         <tr><td>Numero</td><td><input  required type='text' value="${enfant.adresse.numero}" name='numero' placeholder='Saisir numero'></td></tr>
         <tr><td>Voie</td><td><input required  value="${enfant.adresse.voie}"type='text' name='voie' placeholder='Saisir voie'></td></tr>
         <tr><td>Ville</td><td><input required value="${enfant.adresse.ville}" type='text' name='ville' placeholder='Saisir ville'></td></tr>

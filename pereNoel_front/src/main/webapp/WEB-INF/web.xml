@@ -5,14 +5,8 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>TraineauController</display-name>
-    <servlet-name>TraineauController</servlet-name>
-    <servlet-class>controller.TraineauController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TraineauController</servlet-name>
-    <url-pattern>/TraineauController</url-pattern>
-  </servlet-mapping>
+
+  <listener>
+    <listener-class>listener.AppListener</listener-class>
+  </listener>
 </web-app>
