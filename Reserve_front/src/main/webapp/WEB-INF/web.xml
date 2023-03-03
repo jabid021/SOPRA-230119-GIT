@@ -13,14 +13,5 @@
       <include-prelude>/include.jsp</include-prelude>
     </jsp-property-group>
   </jsp-config>
-  <servlet>
-    <description></description>
-    <display-name>controllerActivite</display-name>
-    <servlet-name>controllerActivite</servlet-name>
-    <servlet-class>controller.controllerActivite</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>controllerActivite</servlet-name>
-    <url-pattern>/controllerActivite</url-pattern>
-  </servlet-mapping>
+  
 </web-app>
