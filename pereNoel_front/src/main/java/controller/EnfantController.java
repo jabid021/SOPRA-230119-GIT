@@ -33,7 +33,7 @@ public class EnfantController extends HttpServlet {
 		{	
 			List<Enfant> enfants = Singleton.getInstance().getDaoEnfant().findAll();
 			request.setAttribute("enfants", enfants);
-			this.getServletContext().getRequestDispatcher("/enfants.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/enfants.jsp").forward(request, response);
 		}
 		else 
 		{
@@ -44,7 +44,7 @@ public class EnfantController extends HttpServlet {
 				Integer id =Integer.parseInt(request.getParameter("id"));
 				Enfant e1 = Singleton.getInstance().getDaoEnfant().findById(id);
 				request.setAttribute("enfant", e1);
-				this.getServletContext().getRequestDispatcher("/updateEnfant.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/updateEnfant.jsp").forward(request, response);
 			}
 			//delete
 			else 

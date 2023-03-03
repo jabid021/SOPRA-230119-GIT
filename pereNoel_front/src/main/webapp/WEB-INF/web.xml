@@ -5,8 +5,20 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-
+ 
+ 
   <listener>
     <listener-class>listener.AppListener</listener-class>
   </listener>
+  
+  
+  
+    <jsp-config>
+  	<jsp-property-group>
+  	<url-pattern>*.jsp</url-pattern>
+  	<include-prelude>/include.jsp</include-prelude>
+  	<!--  <include-coda></include-coda> pour inclure une page en bas de toutes nos jsp-->
+  	</jsp-property-group>
+  </jsp-config>
+
 </web-app>

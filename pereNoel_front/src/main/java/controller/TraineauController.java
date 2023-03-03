@@ -24,7 +24,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		{	
 			List<Traineau> traineaux = Singleton.getInstance().getDaoTraineau().findAll();
 			request.setAttribute("traineaux", traineaux);
-			this.getServletContext().getRequestDispatcher("/traineaux.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/traineaux.jsp").forward(request, response);
 		}
 		else 
 		{
@@ -35,7 +35,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				Integer id =Integer.parseInt(request.getParameter("id"));
 				Traineau t1 = Singleton.getInstance().getDaoTraineau().findById(id);
 				request.setAttribute("traineau", t1);
-				this.getServletContext().getRequestDispatcher("/updateTraineau.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/updateTraineau.jsp").forward(request, response);
 			}
 			//delete
 			else 
