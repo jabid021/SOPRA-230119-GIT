@@ -11,12 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import context.Singleton;
 import model.Activite;
-import model.Admin;
-import model.Adresse;
 import model.Biome;
-import model.Client;
-import model.Compte;
-import model.Ranger;
 import model.Scientifique;
 import model.Tourisme;
 import model.Vehicule;
@@ -24,7 +19,7 @@ import model.Vehicule;
 
 @WebServlet("/activite")
 
-public class controllerActivite extends HttpServlet {
+public class ActiviteController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
