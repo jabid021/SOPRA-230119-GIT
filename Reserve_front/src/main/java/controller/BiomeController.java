@@ -26,6 +26,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		//findALL
 		if(request.getParameter("id")==null) 
 		{	
+			
+			request.getSession().setAttribute("demoSession", "uneValue");
+			
 			List<Biome> biomes = Singleton.getInstance().getDaoBiome().findAll();
 			Zone tab[] = Zone.values();
 			request.setAttribute("zones", tab);
@@ -78,13 +81,14 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		else 
 		{
 			Integer id =Integer.parseInt(request.getParameter("id"));
+			Integer version =Integer.parseInt(request.getParameter("version"));
 			String nom = request.getParameter("nom");
 			int superficie = Integer.parseInt(request.getParameter("superficie"));
 			Zone zone = Zone.valueOf(request.getParameter("zone"));
 		
 			
 			Biome b = new Biome(id,nom, superficie, zone);
-			
+			b.setVersion(version);
 			Singleton.getInstance().getDaoBiome().save(b);
 			response.sendRedirect("biome");
 		}

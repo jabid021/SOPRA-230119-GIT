@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="biome")
@@ -25,6 +26,9 @@ public class Biome implements Serializable  {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false ,columnDefinition ="ENUM('Foret', 'Aquatique', 'Montagne', 'Voliere')" )
 	private Zone zone;
+	
+	@Version
+	private int version;
 
 	
 
@@ -109,6 +113,16 @@ public class Biome implements Serializable  {
 
 	public void setEspeces(List<Espece> especes) {
 		this.especes = especes;
+	}
+	
+	
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

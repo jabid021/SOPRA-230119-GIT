@@ -12,6 +12,7 @@
   <h3>Modifier Biome ${biome.id}</h3>
   <form action="biome" method="post">
     <input type="hidden" name="id" value="${biome.id}">
+     <input type="hidden" name="version" value="${biome.version}">
 
     <table>
         <tr><td>Nom Biome : </td><td>  <input type="text" name="nom" value="${biome.nom}" placeholder="nom du biome"></td></tr>
