@@ -1,0 +1,15 @@
+body
+{
+  background-color:#F4EFE7;
+}
+
+#content
+{
+  margin:75px;
+}
+
+.formAjout,#inputAnciennete,#inputNumero,#inputVoie,#inputVille,#inputCp,#inputPays
+{
+  display:none;
+}
+
