@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Liste des Comptes</title>
+<title>Liste des Comptes ()</title>
 </head>
 <body>
 
@@ -14,7 +14,7 @@
 
 
 <div id="content">
-<h1>Liste des Comptes</h1>
+<h1>Liste des Comptes ${demoSession}</h1>
      <input id="btnAddCompte" type="button" class ="btn btn-success" value="Ajouter">
      <a href="index.html"><input type="button" class ="btn btn-info" value="Retour"></a>
 
