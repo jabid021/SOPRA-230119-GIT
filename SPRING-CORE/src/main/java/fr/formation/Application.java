@@ -1,7 +1,8 @@
 package fr.formation;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import fr.formation.config.AppConfig;
 import fr.formation.musicien.Guitariste;
 import fr.formation.musicien.Pianiste;
 
@@ -12,8 +13,13 @@ public class Application {
 //		guitariste.jouer();
 		
 		// On démarre le contexte de SPRING
-		ClassPathXmlApplicationContext context =
-			new ClassPathXmlApplicationContext("classpath:/application-context.xml");
+		// Configuration XML
+//		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:/application-context.xml");
+		
+		
+		// Configuration JAVA (Classe AppConfig)
+		AnnotationConfigApplicationContext context =
+			new AnnotationConfigApplicationContext(AppConfig.class);
 		
 		// On extrait le guitariste du contexte de SPRING
 		Guitariste guitariste = context.getBean(Guitariste.class);
