@@ -6,12 +6,6 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     
     
-    <!-- Spring, au lancement du Contexte, va instancier et gérer cette classe -->
-    <bean id="guitare" class="fr.formation.musicien.Guitare" />
-    
-    <!-- Spring va instancier un Guitariste, puis lui donner une Guitare -->
-    <bean id="guitariste" class="fr.formation.musicien.Guitariste">
-    	<!-- Pour que ça fonctionne, 2 choses : 1/ Le bean "guitare" a été déclaré, 2/ Un setInstrument -->
-    	<property name="instrument" ref="guitare" />
-    </bean>
+    <!-- Déclaration par annotation Java - on demande à Spring d'analyser les classes dans ce package et les sous-packages -->
+    <context:component-scan base-package="fr.formation" />
 </beans>
