@@ -3,6 +3,7 @@ package fr.formation;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.formation.musicien.Guitariste;
+import fr.formation.musicien.Pianiste;
 
 public class Application {
 	public static void main(String[] args) {
@@ -18,5 +19,10 @@ public class Application {
 		Guitariste guitariste = context.getBean(Guitariste.class);
 		
 		guitariste.jouer();
+		
+		// On extrait le pianiste du contexte de SPRING
+		Pianiste pianiste = context.getBean(Pianiste.class);
+		
+		pianiste.jouer();
 	}
 }
