@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    
+    <!-- Spring, au lancement du Contexte, va instancier et gérer cette classe -->
+    <bean id="guitare" class="fr.formation.musicien.Guitare" />
+    
+    <!-- Spring va instancier un Guitariste, puis lui donner une Guitare -->
+    <bean id="guitariste" class="fr.formation.musicien.Guitariste">
+    	<!-- Pour que ça fonctionne, 2 choses : 1/ Le bean "guitare" a été déclaré, 2/ Un setInstrument -->
+    	<property name="instrument" ref="guitare" />
+    </bean>
+</beans>
