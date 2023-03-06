@@ -1,18 +1,18 @@
 package fr.formation;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.formation.config.AppConfig;
+import fr.formation.musicien.Guitare;
 import fr.formation.musicien.Guitariste;
 import fr.formation.musicien.Pianiste;
 
 //@Component
 public class Application {
-	@Autowired
+//	@Autowired
 	private Guitariste guitariste;
 	
-	@Autowired
+//	@Autowired
 	private Pianiste pianiste;
 	
 	public void run() {
@@ -34,11 +34,18 @@ public class Application {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		
 		// On peut créer une instance manangée à SPRING directement à partir du contexte
-		Application app = context.getBeanFactory().createBean(Application.class);
+//		Application app = context.getBeanFactory().createBean(Application.class);
 		
 		// On extrait Application du contexte de SPRING
 //		Application app = context.getBean(Application.class);
-		app.run();
+//		app.run();
+		
+		
+
+		context.getBean(Guitare.class);
+		context.getBean(Guitare.class);
+		
+		
 		
 		
 		// On extrait le guitariste du contexte de SPRING
