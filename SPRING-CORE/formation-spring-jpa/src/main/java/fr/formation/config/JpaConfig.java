@@ -5,8 +5,11 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -17,17 +20,21 @@ import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 @EnableTransactionManagement // Permet d'activer AOP sur les annotations @Transactional
+@PropertySource("classpath:/env.development.local") // Demande à SPRING de charger le fichier de config
 public class JpaConfig {
+	@Autowired
+	private Environment env; // Réceptacle de toutes les props de config
+	
 	// Bean pour la DataSource (DBCP2)
 	@Bean // Attention à ne pas oublier cette annotation ... sinon Spring ne va pas la créer / gérer
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/springjpa");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
-		dataSource.setMaxTotal(10); // nb connexions simultanées autorisées
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		dataSource.setUrl(env.getProperty("db.url"));
+		dataSource.setUsername(env.getProperty("db.username"));
+		dataSource.setPassword(env.getProperty("db.password"));
+		dataSource.setMaxTotal(env.getProperty("db.total", Integer.class)); // nb connexions simultanées autorisées
 		
 		return dataSource;
 	}
