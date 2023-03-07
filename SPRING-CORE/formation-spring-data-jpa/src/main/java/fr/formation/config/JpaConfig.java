@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -20,6 +21,7 @@ import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 @EnableTransactionManagement // Permet d'activer AOP sur les annotations @Transactional
+@EnableJpaRepositories("fr.formation.dao") // Permet d'activer SPRING DATA-JPA (et la génération des Repositories)
 @PropertySource("classpath:/env.development.local") // Demande à SPRING de charger le fichier de config
 public class JpaConfig {
 	@Autowired
@@ -41,7 +43,7 @@ public class JpaConfig {
 	
 	// Bean pour l'EntityManagerFactory
 	@Bean
-	public LocalContainerEntityManagerFactoryBean emf(DataSource dataSource) {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		Properties props = new Properties();
 
