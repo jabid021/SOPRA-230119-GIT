@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import jakarta.persistence.EntityManagerFactory;
 
+
 @Configuration
 @EnableTransactionManagement // Permet d'activer AOP sur les annotations @Transactional
 public class JpaConfig {
@@ -37,7 +38,7 @@ public class JpaConfig {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		Properties props = new Properties();
 
-		props.setProperty("hibernate.hbm2ddl", "update");
+		props.setProperty("hibernate.hbm2ddl.auto", "update");
 		props.setProperty("hibernate.show_sql", "true");
 		
 		emf.setDataSource(dataSource); // On donne la DataSource
