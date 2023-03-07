@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import fr.formation.model.Produit;
 
-public class Application {
+public class ApplicationDemoOptional {
 
 	public static void main(String[] args) {
 //		Produit produit = null;
