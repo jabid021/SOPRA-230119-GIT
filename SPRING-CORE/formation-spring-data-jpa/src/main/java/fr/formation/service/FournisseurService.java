@@ -15,7 +15,7 @@ public class FournisseurService {
 	@Autowired
 	private IFournisseurDao daoFournisseur;
 	
-	@Transactional
+	@Transactional // Ouvrir une transaction / Ouvrir un EM
 	public void showFournisseur() {
 		Optional<Fournisseur> optFournisseur = daoFournisseur.findById(1);
 		
@@ -26,5 +26,5 @@ public class FournisseurService {
 				System.out.println(p.getLibelle());
 			}
 		}
-	}
+	} // Spring va fermer la transaction / Spring va aussi fermer l'EM ici
 }
