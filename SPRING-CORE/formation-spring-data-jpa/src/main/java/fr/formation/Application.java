@@ -10,6 +10,7 @@ import fr.formation.dao.IFournisseurDao;
 import fr.formation.dao.IProduitDao;
 import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
+import fr.formation.service.FournisseurService;
 
 public class Application {
 	public static void main(String[] args) {
@@ -54,7 +55,9 @@ public class Application {
 		
 		
 		// Récupérer un fournisseur par son ID
-		Optional<Fournisseur> optFournisseur = daoFournisseur.findById(1);
+//		Optional<Fournisseur> optFournisseur = daoFournisseur.findById(1);
+		// SOLUTION #1 Pour charger les produits avec le fournisseur
+		Optional<Fournisseur> optFournisseur = daoFournisseur.findByIdWithProduits(1);
 		
 		if (optFournisseur.isPresent()) {
 			System.out.println(optFournisseur.get().getNom());
@@ -63,6 +66,12 @@ public class Application {
 				System.out.println(p.getLibelle());
 			}
 		}
+		
+		
+		
+		// SOLUTION #2 Pour charger les produits du fournisseur
+		FournisseurService srvFournisseur = context.getBean(FournisseurService.class);
+		srvFournisseur.showFournisseur();
 		
 		
 		
