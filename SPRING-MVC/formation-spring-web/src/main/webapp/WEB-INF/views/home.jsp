@@ -6,8 +6,7 @@
 <title>Accueil</title>
 </head>
 <body>
-	<h1>Hello le monde !?</h1>
-	
+	<h1>Hello ${ utilisateur } !?</h1>
 	
 	<form method="POST">
 		<input type="text" name="username" />
