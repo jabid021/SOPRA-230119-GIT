@@ -8,6 +8,11 @@
 <body>
 	<h1>Hello ${ utilisateur.username } !?</h1>
 	
+	
+	<a href="produit?id=10">Afficher le produit (avec RequestParam)</a>
+	<a href="produit/10">Afficher le produit (avec PathVariable)</a>
+	
+	
 	<form method="POST">
 		<input type="text" name="username" />
 		<input type="password" name="password" />
