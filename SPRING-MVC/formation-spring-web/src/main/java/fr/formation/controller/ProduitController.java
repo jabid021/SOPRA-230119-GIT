@@ -14,12 +14,18 @@ import fr.formation.dao.IProduitDao;
 import fr.formation.model.Produit;
 
 @Controller
-@RequestMapping("/produit")
 public class ProduitController {
 	@Autowired
 	private IProduitDao daoProduit;
+	
+	@GetMapping("/produits")
+	public String findAll(Model model) {
+		model.addAttribute("produits", this.daoProduit.findAll());
+		
+		return "liste-produits";
+	}
 
-	@GetMapping // /produit?id=10
+	@GetMapping("/produit") // /produit?id=10
 	public String findByIdRP(@RequestParam int id, Model model) {
 		Optional<Produit> optProduit = this.daoProduit.findById(id);
 		
@@ -30,7 +36,7 @@ public class ProduitController {
 		return "produit";
 	}
 
-	@GetMapping("/{id}") // /produit/10
+	@GetMapping("/produit/{id}") // /produit/10
 	public String findByIdPV(@PathVariable int id, Model model) {
 		Optional<Produit> optProduit = this.daoProduit.findById(id);
 		
