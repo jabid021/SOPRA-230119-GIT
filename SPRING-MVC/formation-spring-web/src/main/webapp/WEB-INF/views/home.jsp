@@ -6,10 +6,11 @@
 <title>Accueil</title>
 </head>
 <body>
-	<h1>Hello ${ utilisateur } !?</h1>
+	<h1>Hello ${ utilisateur.username } !?</h1>
 	
 	<form method="POST">
 		<input type="text" name="username" />
+		<input type="password" name="password" />
 		<input type="submit" value="OK !" />
  	</form>
 	
