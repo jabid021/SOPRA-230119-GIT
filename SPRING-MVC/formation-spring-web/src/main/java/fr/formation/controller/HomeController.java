@@ -16,7 +16,7 @@ public class HomeController {
 //	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
 	@GetMapping
 	public String afficherAccueil() {
-		return "/WEB-INF/views/home.jsp";
+		return "home";
 	}
 	
 	@PostMapping
@@ -27,7 +27,7 @@ public class HomeController {
 		if (user.getUsername().equals("toto") && user.getPassword().equals("tata")) {
 			model.addAttribute("utilisateur", user);
 			
-			return "/WEB-INF/views/home.jsp";
+			return "home";
 		}
 		
 		else {

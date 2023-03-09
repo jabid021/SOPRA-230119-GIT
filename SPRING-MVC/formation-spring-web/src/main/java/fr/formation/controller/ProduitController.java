@@ -27,7 +27,7 @@ public class ProduitController {
 			model.addAttribute("produit", optProduit.get());
 		}
 		
-		return "/WEB-INF/views/produit.jsp";
+		return "produit";
 	}
 
 	@GetMapping("/{id}") // /produit/10
@@ -38,7 +38,7 @@ public class ProduitController {
 			model.addAttribute("produit", optProduit.get());
 		}
 		
-		return "/WEB-INF/views/produit.jsp";
+		return "produit";
 	}
 	
 }

@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ErrorController {
 	@GetMapping
 	public String afficherErreur() {
-		return "/WEB-INF/views/error.jsp";
+		return "error";
 	}
 }
