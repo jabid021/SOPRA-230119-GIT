@@ -4,11 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<base href="/formation-spring-web/" />
 <meta charset="UTF-8" />
 <title>Liste des produist</title>
 </head>
 <body>
-	<a href="ajouter">Ajouter un nouveau produit</a>
+	<a href="produit/ajouter">Ajouter un nouveau produit</a>
 	
 	<table>
 		<thead>
