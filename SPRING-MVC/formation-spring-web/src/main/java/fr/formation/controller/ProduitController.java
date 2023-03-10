@@ -71,8 +71,6 @@ public class ProduitController {
 		return "redirect:/produits";
 	}
 	
-	
-
 	@GetMapping("/produit") // /produit?id=10
 	public String findByIdRP(@RequestParam int id, Model model) {
 		Optional<Produit> optProduit = this.daoProduit.findById(id);
@@ -93,6 +91,45 @@ public class ProduitController {
 		}
 		
 		return "produit";
+	}
+	
+	@GetMapping("/produit/modifier/{id}")
+	public String edit(@PathVariable int id, Model model) {
+		Optional<Produit> optProduit = this.daoProduit.findById(id);
+		
+		if (optProduit.isPresent()) {
+			// Ca permet d'envoyer le produit à la JSP
+			model.addAttribute("produit", optProduit.get());
+		}
+		
+		else {
+			// TODO idéalement, afficher une page d'erreur si le produit n'existe pas
+			model.addAttribute("erreur", "Le produit n'existe pas!");
+		}		
+		
+		return "form-produit";
+	}
+	
+	@PostMapping("/produit/modifier/{id}")
+	public String edit(@PathVariable int id, ProduitRequest produitRequest) {
+		Optional<Produit> optProduit = this.daoProduit.findById(id);
+		
+		if (optProduit.isPresent()) {
+			Produit produit = optProduit.get();
+			
+			// Ca copie les attributs de produitRequest (libelle, prix) vers les attributs de produit (libelle, prix)
+			BeanUtils.copyProperties(produitRequest, produit);
+			
+			// Ca enregistre les modifications dans la base de données
+			this.daoProduit.save(produit);
+		}
+		
+		else {
+			// TODO idéalement, afficher une page d'erreur si le produit n'existe pas
+			return "error";
+		}
+		
+		return "redirect:/produits";
 	}
 	
 	@GetMapping("/produit/supprimer")

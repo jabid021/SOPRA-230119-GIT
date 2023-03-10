@@ -29,6 +29,7 @@
 					<td>${ produit.libelle }</td>
 					<td>${ produit.prix }</td>
 					<td>
+						[<a href="produit/modifier/${ produit.id }">Modifier</a>]
 						[<a href="produit/supprimer?id=${ produit.id }">Supprimer</a>]
 					</td>
 				</tr>

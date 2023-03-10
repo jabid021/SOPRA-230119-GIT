@@ -6,16 +6,17 @@
 <title>Ajouter un produit</title>
 </head>
 <body>
+	${ erreur }
 	
 	<form method="POST">
 		<div>
 			<label>Libellé :</label>
-			<input type="text" name="libelle" />
+			<input type="text" name="libelle" value="${ produit.libelle }" />
 		</div>
 		
 		<div>
 			<label>Prix :</label>
-			<input type="number" name="prix" />
+			<input type="number" name="prix" value="${ produit.prix }" />
 		</div>
 		
 		<div>
