@@ -6,9 +6,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +54,6 @@ public class ProduitApiController {
 		return this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
 	}
 	
-	
 	@PostMapping
 	@JsonView(Views.Produit.class)
 	public Produit add(@RequestBody @Valid ProduitRequest produitRequest, BindingResult result) {
@@ -71,6 +72,56 @@ public class ProduitApiController {
 		
 		return this.daoProduit.save(produit);
 	}
+	
+	@PutMapping("/{id}")
+	public Produit edit(@PathVariable int id, @RequestBody @Valid ProduitRequest produitRequest, BindingResult result) {
+		if (result.hasErrors()) {
+			throw new ProduitBadRequestException();
+		}
+		
+		Produit produit = this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
+		
+		BeanUtils.copyProperties(produitRequest, produit);
+		Fournisseur fournisseur = new Fournisseur();
+		
+		fournisseur.setId(produitRequest.getFournisseurId());
+		produit.setFournisseur(fournisseur);
+		
+		return this.daoProduit.save(produit);
+	}
+	
+	@DeleteMapping("/{id}")
+	public boolean deleteById(@PathVariable int id) {
+		try {
+			this.daoProduit.deleteById(id);
+			return true;
+		}
+		
+		catch (Exception e) {
+			return false;
+		}
+	}
+	
+
+//	Lister les produits
+//	> GET
+//	> /api/produit
+//
+//	Afficher un produit
+//	> GET
+//	> /api/produit/X
+//
+//	Ajouter un produit
+//	> POST
+//	> /api/produit
+//
+//	Modifier un produit
+//	> PUT
+//	> /api/produit/X
+//
+//	Supprimer un produit
+//	> DELETE
+//	> /api/produit/X
 	
 	
 	
