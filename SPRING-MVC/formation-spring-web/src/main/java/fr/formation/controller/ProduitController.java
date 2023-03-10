@@ -93,7 +93,7 @@ public class ProduitController {
 		return "produit";
 	}
 	
-	@GetMapping("/produit/modifier/{id}")
+	@GetMapping("/produit/modifier/{id}") // /produit/modifier/X
 	public String edit(@PathVariable int id, Model model) {
 		Optional<Produit> optProduit = this.daoProduit.findById(id);
 		
@@ -110,7 +110,7 @@ public class ProduitController {
 		return "form-produit";
 	}
 	
-	@PostMapping("/produit/modifier/{id}")
+	@PostMapping("/produit/modifier/{id}") // /produit/modifier/X
 	public String edit(@PathVariable int id, ProduitRequest produitRequest) {
 		Optional<Produit> optProduit = this.daoProduit.findById(id);
 		
@@ -132,7 +132,7 @@ public class ProduitController {
 		return "redirect:/produits";
 	}
 	
-	@GetMapping("/produit/supprimer")
+	@GetMapping("/produit/supprimer") // /produit/supprimer?id=X
 	public String deleteById(@RequestParam int id) {
 		this.daoProduit.deleteById(id);
 		
