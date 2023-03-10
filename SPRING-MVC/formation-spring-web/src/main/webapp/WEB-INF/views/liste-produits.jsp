@@ -7,7 +7,7 @@
 
 <base href="/formation-spring-web/" />
 <meta charset="UTF-8" />
-<title>Liste des produist</title>
+<title>Liste des produits</title>
 </head>
 <body>
 	<a href="produit/ajouter">Ajouter un nouveau produit</a>
@@ -18,6 +18,7 @@
 				<th>ID</th>
 				<th>Libellé</th>
 				<th>Prix</th>
+				<th>Fournisseur</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -28,6 +29,7 @@
 					<td>${ produit.id }</td>
 					<td>${ produit.libelle }</td>
 					<td>${ produit.prix }</td>
+					<td>${ produit.fournisseur.nom }</td>
 					<td>
 						[<a href="produit/modifier/${ produit.id }">Modifier</a>]
 						[<a href="produit/supprimer?id=${ produit.id }">Supprimer</a>]

@@ -6,9 +6,11 @@ import jakarta.validation.constraints.Positive;
 public class ProduitRequest {
 	@NotBlank(message = "Le libellé doit être saisi")
 	private String libelle;
-	
+
 	@Positive(message = "Le prix est forcément positif.")
 	private double prix;
+
+	private int fournisseurId;
 
 	public String getLibelle() {
 		return libelle;
@@ -24,5 +26,13 @@ public class ProduitRequest {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	public int getFournisseurId() {
+		return fournisseurId;
+	}
+
+	public void setFournisseurId(int fournisseurId) {
+		this.fournisseurId = fournisseurId;
 	}
 }

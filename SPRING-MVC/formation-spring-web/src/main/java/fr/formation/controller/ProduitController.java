@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.formation.dao.IFournisseurDao;
 import fr.formation.dao.IProduitDao;
+import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
 import fr.formation.request.ProduitRequest;
 import jakarta.validation.Valid;
@@ -22,6 +24,9 @@ import jakarta.validation.Valid;
 public class ProduitController {
 	@Autowired
 	private IProduitDao daoProduit;
+	
+	@Autowired
+	private IFournisseurDao daoFournisseur;
 	
 	@GetMapping("/produits")
 	public String findAll(Model model) {
@@ -32,7 +37,9 @@ public class ProduitController {
 
 	
 	@GetMapping("/produit/ajouter")
-	public String add() {
+	public String add(Model model) {
+		model.addAttribute("fournisseurs", this.daoFournisseur.findAll());
+		
 		return "form-produit";
 	}
 
@@ -78,6 +85,8 @@ public class ProduitController {
 			
 //			model.addAttribute("produit", produitRequest);
 			
+			model.addAttribute("fournisseurs", this.daoFournisseur.findAll());
+			
 			// On réaffiche le formulaire
 			return "form-produit";
 		}
@@ -90,6 +99,16 @@ public class ProduitController {
 		
 		BeanUtils.copyProperties(produitRequest, produit);
 		
+		// Pour associer le fournisseur, on en crée un
+		Fournisseur fournisseur = new Fournisseur();
+		
+		// On lui donne son ID
+		fournisseur.setId(produitRequest.getFournisseurId());
+		
+		// Et on l'associe au produit
+		produit.setFournisseur(fournisseur);
+		
+		// Enfin, on sauvegarde le produit
 		this.daoProduit.save(produit);
 		
 		return "redirect:/produits";
@@ -129,7 +148,9 @@ public class ProduitController {
 		else {
 			// TODO idéalement, afficher une page d'erreur si le produit n'existe pas
 			model.addAttribute("erreur", "Le produit n'existe pas!");
-		}		
+		}
+
+		model.addAttribute("fournisseurs", this.daoFournisseur.findAll());
 		
 		return "form-produit";
 	}
@@ -138,6 +159,8 @@ public class ProduitController {
 	public String edit(@PathVariable int id, @Valid @ModelAttribute("produit") ProduitRequest produitRequest, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("error", result);
+			model.addAttribute("fournisseurs", this.daoFournisseur.findAll());
+			
 			return "form-produit";
 		}
 		
@@ -148,6 +171,15 @@ public class ProduitController {
 			
 			// Ca copie les attributs de produitRequest (libelle, prix) vers les attributs de produit (libelle, prix)
 			BeanUtils.copyProperties(produitRequest, produit);
+			
+			// Pour associer le fournisseur, on en crée un
+			Fournisseur fournisseur = new Fournisseur();
+			
+			// On lui donne son ID
+			fournisseur.setId(produitRequest.getFournisseurId());
+			
+			// Et on l'associe au produit
+			produit.setFournisseur(fournisseur);
 			
 			// Ca enregistre les modifications dans la base de données
 			this.daoProduit.save(produit);
