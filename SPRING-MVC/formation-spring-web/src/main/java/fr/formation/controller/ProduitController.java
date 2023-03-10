@@ -135,7 +135,12 @@ public class ProduitController {
 	}
 	
 	@PostMapping("/produit/modifier/{id}") // /produit/modifier/X
-	public String edit(@PathVariable int id, ProduitRequest produitRequest) {
+	public String edit(@PathVariable int id, @Valid @ModelAttribute("produit") ProduitRequest produitRequest, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("error", result);
+			return "form-produit";
+		}
+		
 		Optional<Produit> optProduit = this.daoProduit.findById(id);
 		
 		if (optProduit.isPresent()) {
