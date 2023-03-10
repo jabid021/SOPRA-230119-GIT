@@ -99,5 +99,13 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>8.0.0.Final</version>
 		</dependency>
+		
+		
+		<!-- Jackson : Spring puisse sérialiser en JSON -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.14.2</version>
+		</dependency>
 	</dependencies>
 </project>
