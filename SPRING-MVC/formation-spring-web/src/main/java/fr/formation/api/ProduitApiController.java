@@ -94,7 +94,14 @@ public class ProduitApiController {
 	@DeleteMapping("/{id}")
 	public boolean deleteById(@PathVariable int id) {
 		try {
+//			this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
+			
+			if (!this.daoProduit.existsById(id)) {
+				throw new ProduitNotFoundException();
+			}
+			
 			this.daoProduit.deleteById(id);
+			
 			return true;
 		}
 		
