@@ -6,7 +6,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.formation.dao.IProduitDao;
 import fr.formation.model.Produit;
 import fr.formation.request.ProduitRequest;
+import jakarta.validation.Valid;
 
 @Controller
 public class ProduitController {
@@ -58,11 +61,32 @@ public class ProduitController {
 
 	// Version #3 - version la plus commune
 	@PostMapping("/produit/ajouter")
-	public String add(ProduitRequest produitRequest) {
+	// Pour que la validation s'applique : @Valid
+	// Pour récupérer les erreurs de validation, il faut utiliser BindingResult
+	// !!! IL FAUT que ce BindingResult soit placé JUSTE APRES @Valid
+	// Le @ModelAttribute permettra de réinjecter le produitRequest en attribut "produit" dans le Model
+	public String add(@Valid @ModelAttribute("produit") ProduitRequest produitRequest, BindingResult result, Model model) {
 		Produit produit = new Produit();
 
 //		produit.setLibelle(produitRequest.getLibelle());
 //		produit.setPrix(produitRequest.getPrix());
+		
+		// S'assurer que les infos saisies sont correctes
+		if (result.hasErrors()) {
+			// On donne à la JSP toutes les erreurs de validation
+			model.addAttribute("error", result);
+			
+//			model.addAttribute("produit", produitRequest);
+			
+			// On réaffiche le formulaire
+			return "form-produit";
+		}
+		
+//		if (produitRequest.getLibelle() == null || produitRequest.getLibelle().isBlank()) {
+//			model.addAttribute("erreur", "Le libellé doit être saisi");
+//			
+//			return "form-produit";
+//		}
 		
 		BeanUtils.copyProperties(produitRequest, produit);
 		

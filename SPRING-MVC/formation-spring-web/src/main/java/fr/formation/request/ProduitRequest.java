@@ -1,7 +1,13 @@
 package fr.formation.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
 public class ProduitRequest {
+	@NotBlank(message = "Le libellé doit être saisi")
 	private String libelle;
+	
+	@Positive(message = "Le prix est forcément positif.")
 	private double prix;
 
 	public String getLibelle() {

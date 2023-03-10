@@ -14,11 +14,13 @@
 		<div>
 			<label>Libellé :</label>
 			<input type="text" name="libelle" value="${ produit.libelle }" />
+			<div>${ error.getFieldError("libelle").defaultMessage }</div>
 		</div>
 		
 		<div>
 			<label>Prix :</label>
 			<input type="number" name="prix" value="${ produit.prix }" />
+			<div>${ error.getFieldError("prix").defaultMessage }</div>
 		</div>
 		
 		<div>
