@@ -1,5 +1,8 @@
 package fr.formation.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,16 +18,20 @@ public class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
+	@JsonView(Views.Common.class)
 	private int id;
 
 	@Column(name = "libelle", nullable = false)
+	@JsonView(Views.Produit.class)
 	private String libelle;
 
 	@Column(name = "prix", nullable = false)
+	@JsonView(Views.Produit.class)
 	private double prix;
 
 	@ManyToOne
 	@JoinColumn(name = "fournisseur_id")
+	@JsonView(Views.Produit.class)
 	private Fournisseur fournisseur;
 
 	public int getId() {

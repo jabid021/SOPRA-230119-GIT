@@ -2,6 +2,9 @@ package fr.formation.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +19,7 @@ public class Fournisseur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
+	@JsonView(Views.Common.class)
 	private int id;
 
 	@Column(name = "nom", nullable = false)
