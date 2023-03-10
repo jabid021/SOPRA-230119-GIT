@@ -74,6 +74,7 @@ public class ProduitApiController {
 	}
 	
 	@PutMapping("/{id}")
+	@JsonView(Views.Produit.class)
 	public Produit edit(@PathVariable int id, @RequestBody @Valid ProduitRequest produitRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ProduitBadRequestException();
