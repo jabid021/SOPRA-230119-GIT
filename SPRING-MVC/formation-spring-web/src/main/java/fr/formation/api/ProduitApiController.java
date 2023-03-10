@@ -1,10 +1,12 @@
 package fr.formation.api;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -15,11 +17,18 @@ import fr.formation.model.Produit;
 
 //@Controller
 @RestController // Combinaison @Controller + @ResponseBody !
+@RequestMapping("/api/produit")
 public class ProduitApiController {
 	@Autowired
 	private IProduitDao daoProduit;
 	
-	@GetMapping("/api/produit/{id}")
+	@GetMapping
+	@JsonView(Views.Produit.class)
+	public List<Produit> findAll() {
+		return this.daoProduit.findAll();
+	}
+	
+	@GetMapping("/{id}")
 	@JsonView(Views.Produit.class)
 	public Produit findById(@PathVariable int id) {
 		Optional<Produit> optProduit = this.daoProduit.findById(id);
@@ -34,16 +43,13 @@ public class ProduitApiController {
 	
 	
 	
-	
-	
-	
-	@GetMapping("/api/produit/demo")
+	@GetMapping("/demo")
 //	@ResponseBody
 	public String demo() {
 		return "demo";
 	}
 	
-	@GetMapping("/api/produit/demo-complexe")
+	@GetMapping("/demo-complexe")
 	public Produit demoPlusComplexe() {
 		Produit produit = new Produit();
 		Fournisseur fournisseur = new Fournisseur();
