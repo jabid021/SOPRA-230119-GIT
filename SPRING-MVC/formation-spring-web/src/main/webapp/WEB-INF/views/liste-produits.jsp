@@ -28,7 +28,9 @@
 					<td>${ produit.id }</td>
 					<td>${ produit.libelle }</td>
 					<td>${ produit.prix }</td>
-					<td>?</td>
+					<td>
+						[<a href="produit/supprimer?id=${ produit.id }">Supprimer</a>]
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

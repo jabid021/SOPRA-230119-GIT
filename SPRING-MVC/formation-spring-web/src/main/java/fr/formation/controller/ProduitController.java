@@ -95,4 +95,10 @@ public class ProduitController {
 		return "produit";
 	}
 	
+	@GetMapping("/produit/supprimer")
+	public String deleteById(@RequestParam int id) {
+		this.daoProduit.deleteById(id);
+		
+		return "redirect:/produits";
+	}
 }
