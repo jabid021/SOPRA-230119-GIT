@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.dao.IProduitDao;
+import fr.formation.exception.ProduitNotFoundException;
 import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
 
@@ -31,14 +32,16 @@ public class ProduitApiController {
 	@GetMapping("/{id}")
 	@JsonView(Views.Produit.class)
 	public Produit findById(@PathVariable int id) {
-		Optional<Produit> optProduit = this.daoProduit.findById(id);
+//		Optional<Produit> optProduit = this.daoProduit.findById(id);
+//		
+//		if (optProduit.isPresent()) {
+//			return optProduit.get();
+//		}
+//		
+//		throw new ProduitNotFoundException();
 		
-		if (optProduit.isPresent()) {
-			return optProduit.get();
-		}
-		
-		// TODO déclencher une erreur HTTP ?
-		return null;
+		// Si le produit existe, on le retourne, sinon, on crée une ProduitNotFoundException, et on la jète
+		return this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
 	}
 	
 	
