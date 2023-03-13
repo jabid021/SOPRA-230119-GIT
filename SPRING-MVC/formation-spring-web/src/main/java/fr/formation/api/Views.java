@@ -7,4 +7,6 @@ public interface Views {
 	
 	public static interface Fournisseur extends Common {}
 	public static interface FournisseurDetail extends Fournisseur {}
+	
+	public static interface Commentaire extends Common {}
 }

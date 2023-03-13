@@ -22,7 +22,7 @@ public class Produit {
 	private int id;
 
 	@Column(name = "libelle", nullable = false)
-	@JsonView(Views.Produit.class)
+	@JsonView({ Views.Produit.class, Views.Commentaire.class })
 	private String libelle;
 
 	@Column(name = "prix", nullable = false)
