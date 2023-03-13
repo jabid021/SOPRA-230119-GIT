@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -22,6 +23,7 @@ import fr.formation.exception.ProduitBadRequestException;
 import fr.formation.exception.ProduitNotFoundException;
 import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
+import fr.formation.request.ProduitByPriceRequest;
 import fr.formation.request.ProduitRequest;
 import jakarta.validation.Valid;
 
@@ -53,6 +55,32 @@ public class ProduitApiController {
 		// Si le produit existe, on le retourne, sinon, on crée une ProduitNotFoundException, et on la jète
 		return this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
 	}
+	
+//	@GetMapping("/by-price") // /api/produit/by-price?from=10&to=50
+	@JsonView(Views.Produit.class)
+	public List<Produit> findAllByPriceBetweenRP(@RequestParam double from, @RequestParam double to) {
+		return this.daoProduit.findAllByPrixBetween(from, to);
+	}
+	
+	// @RequestBody avec @Get (& @Delete) ne fonctionnent pas, puisqu'on a pas de corps de requêtes pour ces commandes HTTP
+	@GetMapping("/by-price") // /api/produit/by-price?from=10&to=50
+	@JsonView(Views.Produit.class)
+	public List<Produit> findAllByPriceBetween(ProduitByPriceRequest request) {
+		return this.daoProduit.findAllByPrixBetween(request.getFrom(), request.getTo());
+	}
+	
+	@PostMapping("/by-price") // /api/produit/by-price
+	@JsonView(Views.Produit.class)
+	public List<Produit> findAllByPriceBetweenPost(@RequestBody ProduitByPriceRequest request) {
+		return this.daoProduit.findAllByPrixBetween(request.getFrom(), request.getTo());
+	}
+	
+	@GetMapping("/by-fournisseur-id/{fournisseurId}") // /api/produit/by-fournisseur-id/1
+	@JsonView(Views.Produit.class)
+	public List<Produit> findAllByFournisseurId(@PathVariable int fournisseurId) {
+		return this.daoProduit.findAllByFournisseurId(fournisseurId);
+	}
+	
 	
 	@PostMapping
 	@JsonView(Views.Produit.class)

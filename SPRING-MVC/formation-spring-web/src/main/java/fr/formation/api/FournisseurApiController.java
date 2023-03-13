@@ -42,6 +42,8 @@ public class FournisseurApiController {
 	
 	@GetMapping("/{id}")
 	@JsonView(Views.FournisseurDetail.class)
+	// requete HTTP
+	// ouvre la transaction
 	@Transactional
 	public Fournisseur findById(@PathVariable int id) {
 		Fournisseur fournisseur = this.daoFournisseur.findById(id).orElseThrow(FournisseurNotFoundException::new);
@@ -50,6 +52,15 @@ public class FournisseurApiController {
 		Hibernate.initialize(fournisseur.getProduits());
 		
 		return fournisseur;
+	}
+	// fermeture transaction
+	// sérialisation json
+	// réponse http
+	
+	@GetMapping("/{id}-solution2")
+	@JsonView(Views.FournisseurDetail.class)
+	public Fournisseur findById2(@PathVariable int id) {
+		return this.daoFournisseur.findByIdWithProduits(id).orElseThrow(FournisseurNotFoundException::new);
 	}
 	
 	@PostMapping
