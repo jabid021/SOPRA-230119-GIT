@@ -1,5 +1,6 @@
 package fr.formation.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -25,6 +26,7 @@ import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
 import fr.formation.request.ProduitByPriceRequest;
 import fr.formation.request.ProduitRequest;
+import fr.formation.response.ProduitResponse;
 import jakarta.validation.Valid;
 
 //@Controller
@@ -79,6 +81,46 @@ public class ProduitApiController {
 	@JsonView(Views.Produit.class)
 	public List<Produit> findAllByFournisseurId(@PathVariable int fournisseurId) {
 		return this.daoProduit.findAllByFournisseurId(fournisseurId);
+	}
+	
+	@GetMapping("/by-fournisseur-id-v2/{fournisseurId}") // /api/produit/by-fournisseur-id/1
+	public List<ProduitResponse> findAllByFournisseurIdV2(@PathVariable int fournisseurId) {
+		List<Produit> produits = this.daoProduit.findAllByFournisseurId(fournisseurId);
+		List<ProduitResponse> responses = new ArrayList<>();
+		
+		for (Produit produit : produits) {
+			ProduitResponse resp = new ProduitResponse();
+			
+			BeanUtils.copyProperties(produit, resp);
+			
+			if (produit.getFournisseur() != null) {
+				resp.setFournisseurNom(produit.getFournisseur().getNom());				
+			}
+			
+			responses.add(resp);
+		}
+		
+		return responses;
+	}
+	
+	@GetMapping("/by-fournisseur-id-v3/{fournisseurId}") // /api/produit/by-fournisseur-id/1
+	public List<ProduitResponse> findAllByFournisseurIdV3(@PathVariable int fournisseurId) {
+		return this.daoProduit
+					.findAllByFournisseurId(fournisseurId)
+					.stream() // On récupère le flux de produits
+					.map(produit -> {
+						ProduitResponse resp = new ProduitResponse();
+						
+						BeanUtils.copyProperties(produit, resp);
+						
+						if (produit.getFournisseur() != null) {
+							resp.setFournisseurNom(produit.getFournisseur().getNom());
+						}
+						
+						return resp;
+					}) // La fonction "map" permet de transformer
+					.toList() // La fonction "toList" permet de transformer le flux en liste
+					;
 	}
 	
 	
