@@ -23,9 +23,11 @@ public class Fournisseur {
 	private int id;
 
 	@Column(name = "nom", nullable = false)
+	@JsonView(Views.Fournisseur.class)
 	private String nom;
 
 	@OneToMany(mappedBy = "fournisseur")
+	@JsonView(Views.FournisseurDetail.class)
 	private List<Produit> produits;
 
 	public int getId() {
