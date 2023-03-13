@@ -4,6 +4,7 @@ public class ProduitResponse {
 	private int id;
 	private String libelle;
 	private double prix;
+	private int fournisseurId;
 	private String fournisseurNom;
 
 	public int getId() {
@@ -28,6 +29,14 @@ public class ProduitResponse {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	public int getFournisseurId() {
+		return fournisseurId;
+	}
+
+	public void setFournisseurId(int fournisseurId) {
+		this.fournisseurId = fournisseurId;
 	}
 
 	public String getFournisseurNom() {

@@ -23,7 +23,7 @@ public class Fournisseur {
 	private int id;
 
 	@Column(name = "nom", nullable = false)
-	@JsonView(Views.Fournisseur.class)
+	@JsonView({ Views.Fournisseur.class, Views.Produit.class })
 	private String nom;
 
 	@OneToMany(mappedBy = "fournisseur")

@@ -44,8 +44,8 @@ public class ProduitApiController {
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(Views.Produit.class)
-	public Produit findById(@PathVariable int id) {
+//	@JsonView(Views.Produit.class)
+	public ProduitResponse findById(@PathVariable int id) {
 //		Optional<Produit> optProduit = this.daoProduit.findById(id);
 //		
 //		if (optProduit.isPresent()) {
@@ -55,7 +55,17 @@ public class ProduitApiController {
 //		throw new ProduitNotFoundException();
 		
 		// Si le produit existe, on le retourne, sinon, on crée une ProduitNotFoundException, et on la jète
-		return this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
+		Produit produit = this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
+		ProduitResponse resp = new ProduitResponse();
+		
+		BeanUtils.copyProperties(produit, resp);
+		
+		if (produit.getFournisseur() != null) {
+			resp.setFournisseurId(produit.getFournisseur().getId());
+			resp.setFournisseurNom(produit.getFournisseur().getNom());
+		}
+		
+		return resp;
 	}
 	
 //	@GetMapping("/by-price") // /api/produit/by-price?from=10&to=50

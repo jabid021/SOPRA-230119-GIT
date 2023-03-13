@@ -2,7 +2,6 @@ package fr.formation.api;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +23,7 @@ import fr.formation.exception.FournisseurBadRequestException;
 import fr.formation.exception.FournisseurNotFoundException;
 import fr.formation.model.Fournisseur;
 import fr.formation.request.FournisseurRequest;
+import fr.formation.response.FournisseurResponse;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -41,18 +41,23 @@ public class FournisseurApiController {
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(Views.FournisseurDetail.class)
 	// requete HTTP
 	// ouvre la transaction
 	@Transactional
-	public Fournisseur findById(@PathVariable int id) {
+	public FournisseurResponse findById(@PathVariable int id) {
 		Fournisseur fournisseur = this.daoFournisseur.findById(id).orElseThrow(FournisseurNotFoundException::new);
+		FournisseurResponse resp = new FournisseurResponse();
 		
-		// Forcer le chargement de la liste des produits
-		Hibernate.initialize(fournisseur.getProduits());
+		BeanUtils.copyProperties(fournisseur, resp);
 		
-		return fournisseur;
+		resp.setNbProduits(fournisseur.getProduits().size());
+		
+//		// Forcer le chargement de la liste des produits
+//		Hibernate.initialize(fournisseur.getProduits());
+		
+		return resp;
 	}
+	
 	// fermeture transaction
 	// sérialisation json
 	// réponse http
