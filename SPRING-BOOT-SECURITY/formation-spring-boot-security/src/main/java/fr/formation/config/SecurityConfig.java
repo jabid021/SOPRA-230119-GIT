@@ -62,7 +62,7 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Bean
+//	@Bean
 	public UserDetailsService inMemory(PasswordEncoder passwordEncoder) {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 		System.out.println(passwordEncoder.encode("Not24Get"));
