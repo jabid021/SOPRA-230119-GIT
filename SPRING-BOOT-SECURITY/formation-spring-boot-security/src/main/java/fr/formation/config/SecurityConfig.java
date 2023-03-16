@@ -6,6 +6,8 @@ import org.springframework.security.access.expression.method.DefaultMethodSecuri
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -20,8 +22,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.formLogin(); // Activer l'authentification par formulaire de connexion
-//		http.httpBasic(); // Activer l'authentification par Http Basic
+//		http.formLogin(); // Activer l'authentification par formulaire de connexion
+		http.httpBasic(); // Activer l'authentification par Http Basic
 		
 		// Pour gérer les différents accès
 		http.authorizeHttpRequests(authorize -> {
@@ -37,6 +39,8 @@ public class SecurityConfig {
 			authorize.requestMatchers("/api/**").authenticated();
 		});
 		
+		// Par défaut, Spring Security active la protection contre les attaques CSRF
+		http.csrf().disable(); // Permet de désactiver cette protection
 		
 		return http.build();
 	}
@@ -65,6 +69,12 @@ public class SecurityConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	// Grace à ce Bean, on pourra injecter (dans nos contrôleurs par exemple) un AuthenticationManager
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+		return config.getAuthenticationManager();
 	}
 	
 //	@Bean
