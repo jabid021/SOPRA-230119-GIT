@@ -6,7 +6,6 @@ import org.springframework.security.access.expression.method.DefaultMethodSecuri
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,6 +34,27 @@ public class SecurityConfig {
 		
 		
 		return http.build();
+	}
+	
+	@Bean
+    public static MethodSecurityExpressionHandler methodExpressionHandler(RoleHierarchy roleHierarchy) {
+        DefaultMethodSecurityExpressionHandler hdlr = new DefaultMethodSecurityExpressionHandler();
+
+        hdlr.setRoleHierarchy(roleHierarchy);
+
+        return hdlr;
+    }
+	
+	@Bean
+	public RoleHierarchy roleHierarchy() {
+		String hierarchy = """
+			ROLE_ADMIN > ROLE_USER
+		""";
+		RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+		
+		roleHierarchy.setHierarchy(hierarchy);
+		
+		return roleHierarchy;
 	}
 	
 	@Bean
