@@ -3,6 +3,8 @@ package fr.formation.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -34,12 +36,15 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/produit")
 @CrossOrigin("*") // J'autorise tout le monde
 public class ProduitApiController {
+	private Logger log = LoggerFactory.getLogger(ProduitApiController.class);
+	
 	@Autowired
 	private IProduitDao daoProduit;
 	
 	@GetMapping
 	@JsonView(Views.Produit.class)
 	public List<Produit> findAll() {
+		log.debug("Recherche des produits ...");
 		return this.daoProduit.findAll();
 	}
 	
