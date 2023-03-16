@@ -36,6 +36,7 @@ public class SecurityConfig {
 //			authorize.requestMatchers("/api/**").hasRole("ADMIN");
 			
 			// On sera plus générique ici grâce à PrePost = true
+			authorize.requestMatchers("/api/utilisateur/**").permitAll();
 			authorize.requestMatchers("/api/**").authenticated();
 		});
 		
