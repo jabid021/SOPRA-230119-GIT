@@ -16,12 +16,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import fr.formation.config.jwt.JwtHeaderAuthorizationFilter;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain filterChain(HttpSecurity http, JwtHeaderAuthorizationFilter jwtFilter) throws Exception {
 //		http.formLogin(); // Activer l'authentification par formulaire de connexion
 		http.httpBasic(); // Activer l'authentification par Http Basic
 		
@@ -42,6 +45,9 @@ public class SecurityConfig {
 		
 		// Par défaut, Spring Security active la protection contre les attaques CSRF
 		http.csrf().disable(); // Permet de désactiver cette protection
+		
+		// Positionner le filtre
+		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();
 	}
