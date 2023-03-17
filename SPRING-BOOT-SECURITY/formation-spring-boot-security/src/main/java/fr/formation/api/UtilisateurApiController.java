@@ -14,6 +14,7 @@ import fr.formation.config.jwt.JwtUtil;
 import fr.formation.dao.IUtilisateurDao;
 import fr.formation.model.Utilisateur;
 import fr.formation.request.UserRequest;
+import fr.formation.response.AuthResponse;
 
 @RestController
 @RequestMapping("/api/utilisateur")
@@ -28,7 +29,7 @@ public class UtilisateurApiController {
 	private AuthenticationManager authenticationManager;
 	
 	@PostMapping("/connexion")
-	public String connexion(@RequestBody UserRequest userRequest) {
+	public AuthResponse connexion(@RequestBody UserRequest userRequest) {
 		Authentication authentication = this.authenticationManager.authenticate(
 			new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword())
 		);
@@ -36,7 +37,10 @@ public class UtilisateurApiController {
 		// Si on arrive ici, c'est que la connexion a fonctionnée
 		// On pourra mettre en place des mécaniques, comme par exemple, la génération d'un jeton de connexion ...
 		
-		return JwtUtil.generate(authentication);
+		return new AuthResponse(
+			true, // success
+			JwtUtil.generate(authentication) // jeton
+		);
 	}
 	
 	@PostMapping("/inscription")
