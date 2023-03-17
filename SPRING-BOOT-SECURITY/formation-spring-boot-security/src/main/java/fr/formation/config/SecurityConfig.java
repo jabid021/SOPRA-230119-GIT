@@ -47,6 +47,9 @@ public class SecurityConfig {
 		// Par défaut, Spring Security active la protection contre les attaques CSRF
 		http.csrf().disable(); // Permet de désactiver cette protection
 		
+		// Réactiver le filtre CORS (sans ça, @CrossOrigin ne sera pas captés)
+		http.cors();
+		
 		// Positionner le filtre
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		
