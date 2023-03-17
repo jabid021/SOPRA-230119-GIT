@@ -24,6 +24,7 @@ import fr.formation.exception.ProduitBadRequestException;
 import fr.formation.exception.ProduitNotFoundException;
 import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
+import fr.formation.projection.ProduitProjection;
 import fr.formation.request.ProduitByPriceRequest;
 import fr.formation.request.ProduitRequest;
 import fr.formation.response.ProduitResponse;
@@ -66,6 +67,13 @@ public class ProduitApiController {
 		}
 		
 		return resp;
+	}
+	
+	@GetMapping("/projection/{id}")
+	public ProduitProjection findProjectedById(@PathVariable int id) {
+		return this.daoProduit
+			.findProjectedById(id)
+			.orElseThrow(ProduitNotFoundException::new);
 	}
 	
 //	@GetMapping("/by-price") // /api/produit/by-price?from=10&to=50

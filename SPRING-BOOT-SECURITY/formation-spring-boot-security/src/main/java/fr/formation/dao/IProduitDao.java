@@ -1,12 +1,14 @@
 package fr.formation.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
+import fr.formation.projection.ProduitProjection;
 
 public interface IProduitDao extends JpaRepository<Produit, Integer> {
 	// Avec conventions de nommage
@@ -22,4 +24,5 @@ public interface IProduitDao extends JpaRepository<Produit, Integer> {
 	@Query("select p from Produit p where p.fournisseur.id = ?1")
 	public List<Produit> findAllCustomByFournisseur(int fournisseurId);
 	
+	public Optional<ProduitProjection> findProjectedById(int id);
 }
