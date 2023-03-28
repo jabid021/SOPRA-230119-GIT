@@ -1,0 +1,74 @@
+<p [style.color]="couleur">{{prenom}}</p>
+<!-- <input type="text" [value]="prenom" (change)="changePrenom($event)"/><br/> -->
+<!-- <input type="text" [(ngModel)]="prenom"/><br/> -->
+<input type="text" [ngModel]="prenom" (ngModelChange)="majPrenom($event)"/><br/>
+<button (click)="resetPrenom()">Changer</button>
+<hr/>
+<select [(ngModel)]="couleur">
+  <option value="#000000">Noir</option>
+  <option value="#00FF4C">Vert</option>
+  <option value="#FFFF00">Jaune</option>
+  <option value="#0000FF">Bleu</option>
+  <option value="#FF0000">Rouge</option>
+</select><br />
+<input type="color" [(ngModel)]="couleur">
+
+<hr/>
+
+<fieldset>
+    <legend>TODO</legend>
+    <table>
+      <tr>
+        <td>Id : </td>
+        <td><input type="number" [(ngModel)]="todo.id"/></td>
+      <tr>
+      <tr>
+        <td>Titre : </td>
+        <td><input type="text" [(ngModel)]="todo.title"/></td>
+      <tr>
+      <tr>
+        <td>Complété : </td>
+        <td><input type="checkbox" [(ngModel)]="todo.completed"/></td>
+      <tr>
+    </table>
+</fieldset>
+
+<p style="border: 1px solid" *ngIf="todo.title && todo.id && todo.id != 0" [ngClass]="{'negatif': todo.completed}">{{todo.title}}</p>
+
+<hr/>
+
+<table>
+  <thead>
+    <tr>
+      <td colspan="4">Recherche : <input type="text" [(ngModel)]="inputSearch"/></td>
+    </tr>
+    <tr>
+      <th>Identifiant</th>
+      <th>Titre</th>
+      <th>Complété</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- <tr *ngFor="let t of recherche()"> -->
+    <tr *ngFor="let t of todos | todoFilter: inputSearch">
+      <td>{{t.id}}</td>
+      <td>{{t.title | uppercase}}</td>
+      <!-- <td><span *ngIf="t.completed else sinon">Terminé</span><ng-template #sinon><span>Non Terminé</span></ng-template></td> -->
+      <td [style.color]="t.completed | todoState">{{t.completed | todoState:"string"}}</td>
+      <td></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td><input type="number" [(ngModel)]="todoForm.id"/></td>
+      <td><input type="text" [(ngModel)]="todoForm.title"/></td>
+      <td><input type="checkbox" [(ngModel)]="todoForm.completed"/></td>
+      <td><button (click)="ajouter()">Ajouter</button></td>
+    </tr>
+
+  </tfoot>
+
+</table>
+
+<hr/>
