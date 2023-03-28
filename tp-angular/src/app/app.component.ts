@@ -14,7 +14,7 @@ export class AppComponent {
 
   todos: Array<Todo> = new Array<Todo>();
 
-  todo: Todo = new Todo();
+  todo: Todo = new Todo(5, "fdjkfdjds", true);
 
   inputSearch: string;
   

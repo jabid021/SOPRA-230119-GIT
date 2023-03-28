@@ -6,13 +6,21 @@ import { AppComponent } from './app.component';
 import { HelloWorldDirective } from './hello-world.directive';
 import { TodoFilterPipe } from './todo-filter.pipe';
 import { TodoStatePipe } from './todo-state.pipe';
+import { HelloWorldComponent } from './hello-world/hello-world.component';
+import { AscBoldComponent } from './asc-bold/asc-bold.component';
+import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component';
+import { TodoFormComponent } from './todo-form/todo-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HelloWorldDirective,
     TodoFilterPipe,
-    TodoStatePipe
+    TodoStatePipe,
+    HelloWorldComponent,
+    AscBoldComponent,
+    AscTextFieldComponent,
+    TodoFormComponent
   ],
   imports: [
     BrowserModule,

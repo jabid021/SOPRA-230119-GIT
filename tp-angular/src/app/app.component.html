@@ -15,7 +15,8 @@
 
 <hr/>
 
-<fieldset>
+<todo-form [todo]="todo"></todo-form>
+<!-- <fieldset>
     <legend>TODO</legend>
     <table>
       <tr>
@@ -31,7 +32,7 @@
         <td><input type="checkbox" [(ngModel)]="todo.completed"/></td>
       <tr>
     </table>
-</fieldset>
+</fieldset> -->
 
 <p style="border: 1px solid" *ngIf="todo.title && todo.id && todo.id != 0" [ngClass]="{'negatif': todo.completed}">{{todo.title}}</p>
 
@@ -72,3 +73,12 @@
 </table>
 
 <hr/>
+
+<hello-world title="prenom" [value]="prenom">Démon</hello-world>
+
+<asc-bold class="negatif">Donald Trump détient toutes les vérités (fake news)</asc-bold>
+
+<hr/>
+
+<asc-text-field label="Titre" [value]="todo.title"></asc-text-field><br/>
+<asc-text-field label="Identifiant" [value]="todo.id" type="number"></asc-text-field>
