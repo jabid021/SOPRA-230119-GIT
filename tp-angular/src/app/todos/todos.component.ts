@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Todo } from '../todo';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todos',
@@ -8,20 +9,37 @@ import { Todo } from '../todo';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent {
-  todos: Array<Todo> = new Array<Todo>();
-
   inputSearch: string;
   
   todoForm: Todo = new Todo();
 
-  constructor(private router: Router) {
-    this.todos.push(new Todo(2, "Avis défaborable", false, 3));
-    this.todos.push(new Todo(5, "Top produit", true, 3));
-    this.todos.push(new Todo(6, "Produit conforme", true, 9));
+  constructor(private router: Router, private todoService: TodoService) {
   }
 
-  ajouter() {
-    this.todos.push(this.todoForm);
+  valider() {
+    if(!this.todoForm.id) {
+      this.todoService.create(this.todoForm);
+    } else {
+      this.todoService.update(this.todoForm);
+    }
+
+    this.todoForm = new Todo();
+  }
+
+  edit(id: number) {
+    this.todoForm = {...this.todoService.findById(id)};
+  }
+
+  remove(id: number) {
+    this.todoService.deleteById(id);
+  }
+
+  recherche() : Array<Todo>{
+    if(this.inputSearch) {
+      return this.todoService.findAllByTitre(this.inputSearch);
+    }
+
+    return this.todoService.findAll();
   }
 
   gotoDetail(id: number) {

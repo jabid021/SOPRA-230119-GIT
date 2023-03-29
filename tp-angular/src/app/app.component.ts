@@ -22,6 +22,8 @@ export class AppComponent {
     this.todos.push(new Todo(2, "Avis défaborable", false, 3));
     this.todos.push(new Todo(5, "Top produit", true, 3));
     this.todos.push(new Todo(6, "Produit conforme", true, 9));
+
+    
   }
 
   todoForm: Todo = new Todo();

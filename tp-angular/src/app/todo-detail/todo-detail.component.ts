@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Todo } from '../todo';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo-detail',
@@ -9,10 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 export class TodoDetailComponent {
-  monId: any;
+  todo:Todo;
 
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.monId = params['id']);
+  constructor(private route: ActivatedRoute, private todoService: TodoService) {
+    this.route.params.subscribe(params => {
+      let monId = params['id'];
+
+      this.todo = this.todoService.findById(monId);
+    });
 
   }
 }
