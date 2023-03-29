@@ -14,7 +14,7 @@ export class AppComponent {
 
   todos: Array<Todo> = new Array<Todo>();
 
-  todo: Todo = new Todo(5, "fdjkfdjds", true);
+  todo: Todo = new Todo(5, "A faire", true);
 
   inputSearch: string;
   
@@ -50,11 +50,15 @@ export class AppComponent {
     return this.todos;
   }
 
-  bidon() {
-    let maMap: Map<String, String> = new Map<String, String>();
+  bidon(count: number) {
+    alert(count);
+  }
 
-    maMap.forEach((v, k) => {
-      console.log()
-    });
+  todoMajTitre(titre: string) {
+    this.todo.title = titre;
+  }
+
+  todoMajId(id: number) {
+    this.todo.id = id;
   }
 }

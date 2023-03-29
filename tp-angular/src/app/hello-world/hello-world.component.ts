@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'hello-world, hi, [hello], [hi]',
@@ -12,6 +12,13 @@ export class HelloWorldComponent {
   
   @Input("value")
   valeur: string;
+
+  @Output()
+  clicked = new EventEmitter<number>();
+
+  sonnette() {
+    this.clicked.emit(55);
+  }
 
   @HostListener("click")
   maMethode() {

@@ -74,11 +74,17 @@
 
 <hr/>
 
-<hello-world title="prenom" [value]="prenom">Démon</hello-world>
+<hello-world title="prenom" [value]="prenom" (clicked)="bidon($event)">Démon</hello-world>
 
 <asc-bold class="negatif">Donald Trump détient toutes les vérités (fake news)</asc-bold>
 
 <hr/>
 
-<asc-text-field label="Titre" [value]="todo.title"></asc-text-field><br/>
-<asc-text-field label="Identifiant" [value]="todo.id" type="number"></asc-text-field>
+<asc-text-field label="Titre" [value]="todo.title" (valueChange)="todoMajTitre($event)"></asc-text-field><br/>
+<asc-text-field label="Identifiant" [value]="todo.id" type="number" (valueChange)="todoMajId($event)"></asc-text-field>
+
+<hr/>
+
+<asc-tooltip titre="Et voilà un tooltip !">Voilà un message !</asc-tooltip>
+
+<p asc-tooltip titre="Et voilà un 2ème tooltip !">Voilà un 2ème message !</p>

@@ -1,2 +1,2 @@
 <label>{{libelle}}</label><br/>
-<input [type]="type" [value]="valeur"/>
+<input [type]="type" [(ngModel)]="valeur" (ngModelChange)="changeVal()"/>

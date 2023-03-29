@@ -10,6 +10,7 @@ import { HelloWorldComponent } from './hello-world/hello-world.component';
 import { AscBoldComponent } from './asc-bold/asc-bold.component';
 import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { AscTooltipComponent } from './asc-tooltip/asc-tooltip.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
     HelloWorldComponent,
     AscBoldComponent,
     AscTextFieldComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    AscTooltipComponent
   ],
   imports: [
     BrowserModule,

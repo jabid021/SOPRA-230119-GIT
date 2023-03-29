@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'asc-text-field',
@@ -12,4 +12,11 @@ export class AscTextFieldComponent {
   valeur: any;
   @Input()
   type: string = "text"
+
+  @Output()
+  valueChange = new EventEmitter<any>();
+
+  changeVal() {
+    this.valueChange.emit(this.valeur);
+  }
 }
