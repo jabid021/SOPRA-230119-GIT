@@ -1,0 +1,33 @@
+<table>
+    <thead>
+      <tr>
+        <td colspan="4">Recherche : <input type="text" [(ngModel)]="inputSearch"/></td>
+      </tr>
+      <tr>
+        <th>Identifiant</th>
+        <th>Titre</th>
+        <th>Complété</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let t of recherche()"> -->
+      <tr *ngFor="let t of todos | todoFilter: inputSearch">
+        <td [routerLink]="['/todo', t.id]" style="cursor: pointer">{{t.id}}</td>
+        <td>{{t.title | uppercase}}</td>
+        <!-- <td><span *ngIf="t.completed else sinon">Terminé</span><ng-template #sinon><span>Non Terminé</span></ng-template></td> -->
+        <td [style.color]="t.completed | todoState">{{t.completed | todoState:"string"}}</td>
+        <td><button (click)="gotoDetail(t.id)">Détail</button></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td><input type="number" [(ngModel)]="todoForm.id"/></td>
+        <td><input type="text" [(ngModel)]="todoForm.title"/></td>
+        <td><input type="checkbox" [(ngModel)]="todoForm.completed"/></td>
+        <td><button (click)="ajouter()">Ajouter</button></td>
+      </tr>
+  
+    </tfoot>
+  
+  </table>
