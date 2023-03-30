@@ -25,7 +25,9 @@ export class FournisseurComponent {
   }
 
   edit(id: number): void {
-    this.fournisseurForm = {...this.fournisseurService.findById(id)};
+    this.fournisseurService.findById(id).subscribe(resp => {
+      this.fournisseurForm = resp;
+    });
   }
 
   remove(id: number): void {

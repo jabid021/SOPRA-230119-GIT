@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { GlobalService } from '../global.service';
 import { Fournisseur } from '../model';
 
 @Injectable({
@@ -9,9 +10,10 @@ import { Fournisseur } from '../model';
 export class FournisseurHttpService {
 
   private fournisseurs: Array<Fournisseur> = new Array<Fournisseur>();
+  private fournisseurApiPath: string;
 
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private globalService: GlobalService) {
+    this.fournisseurApiPath = globalService.apiPath + "/fournisseur/";
     this.load();
   }
 
@@ -19,26 +21,30 @@ export class FournisseurHttpService {
     return this.fournisseurs;
   }
 
-  findById(id: number): Fournisseur {
-    return null;
+  findById(id: number): Observable<Fournisseur> {
+    return this.http.get<Fournisseur>(this.fournisseurApiPath + id);
   }
 
   create(fournisseur: Fournisseur): void {
-    this.http.post<Fournisseur>("http://localhost:8080/api/fournisseur", fournisseur).subscribe(resp => {
+    this.http.post<Fournisseur>(this.fournisseurApiPath, fournisseur).subscribe(resp => {
       this.load();
     });
   }
 
   update(fournisseur: Fournisseur): void {
-    
+    this.http.put<Fournisseur>(this.fournisseurApiPath + fournisseur.id, fournisseur).subscribe(resp => {
+      this.load();
+    });
   }
 
   remove(id: number): void {
-    
+    this.http.delete<boolean>(this.fournisseurApiPath + id).subscribe(resp => {
+      this.load();
+    });
   }
 
   private load(): void {
-    this.http.get<Array<Fournisseur>>("http://localhost:8080/api/fournisseur").subscribe(resp => {
+    this.http.get<Array<Fournisseur>>(this.fournisseurApiPath).subscribe(resp => {
         this.fournisseurs = resp;
     })
   }

@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule }from '@angular/common/http';
 import { ProduitComponent } from './produit/produit.component';
 import { ProduitService } from './produit/produit.service';
+import { FournisseurHttpService } from './fournisseur/fournisseur-http.service';
+import { GlobalService } from './global.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { ProduitService } from './produit/produit.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [FournisseurService, ProduitService],
+  providers: [GlobalService, FournisseurService, FournisseurHttpService, ProduitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
