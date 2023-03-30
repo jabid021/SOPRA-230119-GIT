@@ -8,20 +8,23 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { FournisseurService } from './fournisseur/fournisseur.service';
 import { FormsModule } from '@angular/forms';
+import { ProduitComponent } from './produit/produit.component';
+import { ProduitService } from './produit/produit.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     AccueilComponent,
-    FournisseurComponent
+    FournisseurComponent,
+    ProduitComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [FournisseurService],
+  providers: [FournisseurService, ProduitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
