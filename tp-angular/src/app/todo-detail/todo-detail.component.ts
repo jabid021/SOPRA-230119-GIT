@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Todo } from '../todo';
-import { TodoService } from '../todo.service';
+import { TodoService } from '../todos/todo.service';
 
 @Component({
   selector: 'app-todo-detail',

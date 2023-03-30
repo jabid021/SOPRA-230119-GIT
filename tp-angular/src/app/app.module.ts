@@ -16,7 +16,7 @@ import { TodosComponent } from './todos/todos.component';
 import { HomeComponent } from './home/home.component';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TodoService } from './todo.service';
+import { TodoService } from './todos/todo.service';
 
 const routes: Routes = [
   {path:"home", component: HomeComponent},
