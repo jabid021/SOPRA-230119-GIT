@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Fournisseur } from '../model';
+import { FournisseurHttpService } from './fournisseur-http.service';
 import { FournisseurService } from './fournisseur.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class FournisseurComponent {
 
   fournisseurForm: Fournisseur = null;
 
-  constructor(private fournisseurService: FournisseurService) {
+  constructor(private fournisseurService: FournisseurHttpService) {
 
   }
 

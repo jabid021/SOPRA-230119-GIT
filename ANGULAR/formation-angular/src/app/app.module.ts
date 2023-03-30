@@ -8,6 +8,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { FournisseurService } from './fournisseur/fournisseur.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule }from '@angular/common/http';
 import { ProduitComponent } from './produit/produit.component';
 import { ProduitService } from './produit/produit.service';
 
@@ -22,7 +23,8 @@ import { ProduitService } from './produit/produit.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [FournisseurService, ProduitService],
   bootstrap: [AppComponent]

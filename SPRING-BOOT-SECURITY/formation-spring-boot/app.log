@@ -22,3 +22,61 @@
 2023-03-30T10:36:27.800+02:00  INFO 7744 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2023-03-30T10:36:27.883+02:00  INFO 7744 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 2023-03-30T10:36:27.897+02:00  INFO 7744 --- [restartedMain] f.f.FormationSpringBootApplication       : Started FormationSpringBootApplication in 4.784 seconds (process running for 5.16)
+2023-03-30T14:11:13.063+02:00  INFO 29824 --- [restartedMain] f.f.FormationSpringBootApplication       : Starting FormationSpringBootApplication using Java 17.0.5 with PID 29824 (C:\java\workspaceAJC\workspace230119\SOPRA-230119-GIT\SPRING-BOOT-SECURITY\formation-spring-boot\target\classes started by eric in C:\java\workspaceAJC\workspace230119\SOPRA-230119-GIT\SPRING-BOOT-SECURITY\formation-spring-boot)
+2023-03-30T14:11:13.066+02:00 DEBUG 29824 --- [restartedMain] f.f.FormationSpringBootApplication       : Running with Spring Boot v3.0.4, Spring v6.0.6
+2023-03-30T14:11:13.067+02:00  INFO 29824 --- [restartedMain] f.f.FormationSpringBootApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-03-30T14:11:13.113+02:00  INFO 29824 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-30T14:11:13.113+02:00  INFO 29824 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-30T14:11:13.729+02:00  INFO 29824 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-30T14:11:13.802+02:00  INFO 29824 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 3 JPA repository interfaces.
+2023-03-30T14:11:14.561+02:00  INFO 29824 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30T14:11:14.571+02:00  INFO 29824 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30T14:11:14.571+02:00  INFO 29824 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-03-30T14:11:14.631+02:00  INFO 29824 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30T14:11:14.632+02:00  INFO 29824 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1518 ms
+2023-03-30T14:11:14.886+02:00  INFO 29824 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-30T14:11:14.943+02:00  INFO 29824 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-03-30T14:11:15.220+02:00  INFO 29824 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-30T14:11:15.515+02:00  INFO 29824 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@178bc505
+2023-03-30T14:11:15.518+02:00  INFO 29824 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-30T14:11:15.590+02:00  INFO 29824 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-03-30T14:11:16.273+02:00  INFO 29824 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30T14:11:16.279+02:00  INFO 29824 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-30T14:11:17.092+02:00  WARN 29824 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-30T14:11:17.706+02:00  INFO 29824 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-30T14:11:17.753+02:00  INFO 29824 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30T14:11:17.765+02:00  INFO 29824 --- [restartedMain] f.f.FormationSpringBootApplication       : Started FormationSpringBootApplication in 5.081 seconds (process running for 5.479)
+2023-03-30T14:11:41.028+02:00  INFO 29824 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30T14:11:41.029+02:00  INFO 29824 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30T14:11:41.030+02:00  INFO 29824 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30T14:25:24.306+02:00  INFO 29824 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-03-30T14:25:24.317+02:00  INFO 29824 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-03-30T14:25:24.318+02:00  INFO 29824 --- [Thread-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-03-30T14:25:24.322+02:00  INFO 29824 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-30T14:25:24.325+02:00  INFO 29824 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-30T14:25:24.331+02:00  INFO 29824 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-30T14:25:24.421+02:00  INFO 29824 --- [restartedMain] f.f.FormationSpringBootApplication       : Starting FormationSpringBootApplication using Java 17.0.5 with PID 29824 (C:\java\workspaceAJC\workspace230119\SOPRA-230119-GIT\SPRING-BOOT-SECURITY\formation-spring-boot\target\classes started by eric in C:\java\workspaceAJC\workspace230119\SOPRA-230119-GIT\SPRING-BOOT-SECURITY\formation-spring-boot)
+2023-03-30T14:25:24.421+02:00 DEBUG 29824 --- [restartedMain] f.f.FormationSpringBootApplication       : Running with Spring Boot v3.0.4, Spring v6.0.6
+2023-03-30T14:25:24.421+02:00  INFO 29824 --- [restartedMain] f.f.FormationSpringBootApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-03-30T14:25:24.527+02:00  INFO 29824 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-30T14:25:24.538+02:00  INFO 29824 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 3 JPA repository interfaces.
+2023-03-30T14:25:24.597+02:00  INFO 29824 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30T14:25:24.598+02:00  INFO 29824 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30T14:25:24.598+02:00  INFO 29824 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-03-30T14:25:24.612+02:00  INFO 29824 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30T14:25:24.612+02:00  INFO 29824 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 190 ms
+2023-03-30T14:25:24.635+02:00  INFO 29824 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-30T14:25:24.639+02:00  INFO 29824 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-03-30T14:25:24.648+02:00  INFO 29824 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ee8fa0b
+2023-03-30T14:25:24.648+02:00  INFO 29824 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-03-30T14:25:24.649+02:00  INFO 29824 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-03-30T14:25:24.710+02:00  INFO 29824 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30T14:25:24.711+02:00  INFO 29824 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-30T14:25:24.816+02:00  WARN 29824 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-30T14:25:24.895+02:00  INFO 29824 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-30T14:25:24.901+02:00  INFO 29824 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30T14:25:24.903+02:00  INFO 29824 --- [restartedMain] f.f.FormationSpringBootApplication       : Started FormationSpringBootApplication in 0.498 seconds (process running for 852.617)
+2023-03-30T14:25:24.905+02:00  INFO 29824 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-03-30T14:25:45.316+02:00  INFO 29824 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30T14:25:45.316+02:00  INFO 29824 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30T14:25:45.317+02:00  INFO 29824 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
