@@ -7,6 +7,7 @@
                     <th>Identifiant</th>
                     <th>Libellé</th>
                     <th>Prix</th>
+                    <th>Fournisseur</th>
                     <th></th>
                 </tr>
             </thead>
@@ -16,6 +17,7 @@
                     <td>{{produit.id}}</td>
                     <td>{{produit.libelle}}</td>
                     <td>{{produit.prix}}</td>
+                    <td>{{produit.fournisseur?.id}} - {{produit.fournisseur?.nom}}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
                             <a class="btn btn-primary" (click)="edit(produit.id)"><i class="bi bi-pencil-square"></i></a>
@@ -44,6 +46,12 @@
         </div>
         <div class="form-group">
             <label for="prix">Prix:</label> <input type="number" class="form-control" id="prix" name="prix" [(ngModel)]="produitForm.prix" step="0.01"/>
+        </div>
+        <div class="form-group">
+            <label for="fournisseur">Fournisseur:</label>
+            <select class="form-control" id="fournisseur" name="fournisseur" [(ngModel)]="produitForm.fournisseur.id">
+                <option [value]="fournisseur.id" *ngFor="let fournisseur of listFournisseur()">{{fournisseur.id}} - {{fournisseur.nom}}</option>
+            </select>
         </div>
     </div>
     <div class="card-footer">

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Produit } from '../model';
+import { FournisseurService } from '../fournisseur/fournisseur.service';
+import { Fournisseur, Produit } from '../model';
 import { ProduitService } from './produit.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ProduitService } from './produit.service';
 export class ProduitComponent {
   produitForm: Produit = null;
 
-  constructor(private produitService: ProduitService) {
+  constructor(private produitService: ProduitService, private fournisseurService: FournisseurService) {
 
   }
 
@@ -18,12 +19,23 @@ export class ProduitComponent {
     return this.produitService.findAll();
   }
 
+  listFournisseur(): Array<Fournisseur> {
+    return this.fournisseurService.findAll();
+  }
+
   add(): void {
     this.produitForm = new Produit();
+    this.produitForm.fournisseur = new Fournisseur();  
   }
 
   edit(id: number): void {
     this.produitForm = {...this.produitService.findById(id)};
+
+    if(!this.produitForm.fournisseur) {
+      this.produitForm.fournisseur = new Fournisseur();
+    } else {
+      this.produitForm.fournisseur = {...this.produitForm.fournisseur};
+    }
   }
 
   remove(id: number): void {
@@ -31,6 +43,7 @@ export class ProduitComponent {
   }
 
   save(): void {
+    console.log(this.produitForm);
     if(this.produitForm.id) {
       this.produitService.update(this.produitForm);
     } else {
