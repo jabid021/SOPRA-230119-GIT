@@ -9,14 +9,26 @@
     <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email" formControlName="email"/>
+        <span *ngIf="emailCtrl.dirty && emailCtrl?.hasError('required')" class="text-danger">
+            L'email est obligatoire
+        </span>
+        <span *ngIf="emailCtrl.dirty && emailCtrl?.hasError('email')" class="text-danger">
+            L'email est invalide
+        </span>
     </div>
     <div class="form-group">
         <label for="password">Mot de passe:</label>
-        <input type="text" class="form-control" id="password" formControlName="password"/>
+        <input type="password" class="form-control" id="password" formControlName="password"/>
+        <span *ngIf="passwordCtrl.dirty && passwordCtrl?.hasError('required')" class="text-danger">
+            Le mot de passe est obligatoire
+        </span>
+        <span *ngIf="passwordCtrl.dirty && passwordCtrl?.hasError('pattern')" class="text-danger">
+            Le mot de passe n'est pas au bon format
+        </span>
     </div>
     <div class="form-group">
         <label for="passwordConfirm">Confirmation du mot de passe:</label>
-        <input type="text" class="form-control" id="passwordConfirm" formControlName="passwordConfirm"/>
+        <input type="password" class="form-control" id="passwordConfirm" formControlName="passwordConfirm"/>
     </div>
 
     <input class="btn btn-success mt-2" type="submit" [disabled]="inscriptionForm.invalid" value="S'inscrire"/>

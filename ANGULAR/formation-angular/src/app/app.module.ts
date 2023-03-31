@@ -15,6 +15,7 @@ import { FournisseurHttpService } from './fournisseur/fournisseur-http.service';
 import { GlobalService } from './global.service';
 import { ProduitHttpService } from './produit/produit-http.service';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { HelloModule } from './hello/hello.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    HelloModule
   ],
   providers: [GlobalService, FournisseurService, FournisseurHttpService, ProduitService, ProduitHttpService],
   bootstrap: [AppComponent]

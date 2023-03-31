@@ -8,7 +8,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class InscriptionComponent implements OnInit {
   inscriptionForm: FormGroup;
-  usernameCtrl: FormControl
+  usernameCtrl: FormControl;
+  emailCtrl: FormControl;
+  passwordCtrl: FormControl;
+  passwordConfirmCtrl: FormControl;
 
   constructor(private formBuilder: FormBuilder) {
 
@@ -16,12 +19,15 @@ export class InscriptionComponent implements OnInit {
   
   ngOnInit(): void {
     this.usernameCtrl = this.formBuilder.control('', Validators.required);
+    this.emailCtrl = this.formBuilder.control('', [Validators.required, Validators.email]);
+    this.passwordCtrl = this.formBuilder.control('', [Validators.required, Validators.minLength(8), Validators.pattern('^.*[A-Z]+.*$')]);
+    this.passwordConfirmCtrl = this.formBuilder.control('', );
 
     this.inscriptionForm = this.formBuilder.group({
       username: this.usernameCtrl,
-      email: this.formBuilder.control(''),
-      password: this.formBuilder.control(''),
-      passwordConfirm: this.formBuilder.control('')
+      email: this.emailCtrl,
+      password: this.passwordCtrl,
+      passwordConfirm: this.passwordConfirmCtrl
     });
   }
 
@@ -31,3 +37,4 @@ export class InscriptionComponent implements OnInit {
   }
 
 }
+
