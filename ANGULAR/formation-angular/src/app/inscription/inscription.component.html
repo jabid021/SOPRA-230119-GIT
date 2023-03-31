@@ -1,1 +1,23 @@
-<p>inscription works!</p>
+<form [formGroup]="inscriptionForm" (ngSubmit)="inscription()">
+    <div class="form-group">
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" class="form-control" id="username" formControlName="username"/>
+        <span *ngIf="usernameCtrl.dirty && usernameCtrl?.hasError('required')" class="text-danger">
+            Le nom d'utilisateur est obligatoire
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" formControlName="email"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe:</label>
+        <input type="text" class="form-control" id="password" formControlName="password"/>
+    </div>
+    <div class="form-group">
+        <label for="passwordConfirm">Confirmation du mot de passe:</label>
+        <input type="text" class="form-control" id="passwordConfirm" formControlName="passwordConfirm"/>
+    </div>
+
+    <input class="btn btn-success mt-2" type="submit" [disabled]="inscriptionForm.invalid" value="S'inscrire"/>
+</form>

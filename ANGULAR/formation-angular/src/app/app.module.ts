@@ -7,7 +7,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { FournisseurService } from './fournisseur/fournisseur.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule }from '@angular/common/http';
 import { ProduitComponent } from './produit/produit.component';
 import { ProduitService } from './produit/produit.service';
@@ -29,7 +29,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [GlobalService, FournisseurService, FournisseurHttpService, ProduitService, ProduitHttpService],
   bootstrap: [AppComponent]
