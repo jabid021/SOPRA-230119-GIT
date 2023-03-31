@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Observable, of, tap } from 'rxjs';
 import { FournisseurService } from '../fournisseur/fournisseur.service';
-import { Fournisseur, Produit } from '../model';
+import { Fournisseur, Produit, ProduitRequestResponse } from '../model';
+import { ProduitHttpService } from './produit-http.service';
 import { ProduitService } from './produit.service';
+import { FournisseurHttpService } from '../fournisseur/fournisseur-http.service';
 
 @Component({
   selector: 'app-produit',
@@ -9,10 +12,11 @@ import { ProduitService } from './produit.service';
   styleUrls: ['./produit.component.scss']
 })
 export class ProduitComponent {
-  produitForm: Produit = null;
+  produitForm: ProduitRequestResponse = null;
 
-  constructor(private produitService: ProduitService, private fournisseurService: FournisseurService) {
+  // produits$ : Observable<Array<Produit>>;
 
+  constructor(private produitService: ProduitHttpService, private fournisseurService: FournisseurHttpService) {
   }
 
   list(): Array<Produit> {
@@ -24,18 +28,14 @@ export class ProduitComponent {
   }
 
   add(): void {
-    this.produitForm = new Produit();
-    this.produitForm.fournisseur = new Fournisseur();  
+    this.produitForm = new ProduitRequestResponse()
+    
   }
 
   edit(id: number): void {
-    this.produitForm = {...this.produitService.findById(id)};
-
-    if(!this.produitForm.fournisseur) {
-      this.produitForm.fournisseur = new Fournisseur();
-    } else {
-      this.produitForm.fournisseur = {...this.produitForm.fournisseur};
-    }
+    this.produitService.findById(id).subscribe(resp => {
+      this.produitForm = resp;
+    });
   }
 
   remove(id: number): void {
@@ -43,7 +43,6 @@ export class ProduitComponent {
   }
 
   save(): void {
-    console.log(this.produitForm);
     if(this.produitForm.id) {
       this.produitService.update(this.produitForm);
     } else {

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import fr.formation.dao.IFournisseurDao;
 import fr.formation.dao.IProduitDao;
 import fr.formation.exception.ProduitBadRequestException;
 import fr.formation.exception.ProduitNotFoundException;
@@ -37,17 +38,20 @@ import jakarta.validation.Valid;
 @CrossOrigin("*") // J'autorise tout le monde
 public class ProduitApiController {
 	private Logger log = LoggerFactory.getLogger(ProduitApiController.class);
-	
+
 	@Autowired
 	private IProduitDao daoProduit;
-	
+
+	@Autowired
+	private IFournisseurDao daoFournisseur;
+
 	@GetMapping
 	@JsonView(Views.Produit.class)
 	public List<Produit> findAll() {
 		log.debug("Recherche des produits ...");
 		return this.daoProduit.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
 //	@JsonView(Views.Produit.class)
 	public ProduitResponse findById(@PathVariable int id) {
@@ -58,143 +62,149 @@ public class ProduitApiController {
 //		}
 //		
 //		throw new ProduitNotFoundException();
-		
-		// Si le produit existe, on le retourne, sinon, on crée une ProduitNotFoundException, et on la jète
+
+		// Si le produit existe, on le retourne, sinon, on crée une
+		// ProduitNotFoundException, et on la jète
 		Produit produit = this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
 		ProduitResponse resp = new ProduitResponse();
-		
+
 		BeanUtils.copyProperties(produit, resp);
-		
+
 		if (produit.getFournisseur() != null) {
 			resp.setFournisseurId(produit.getFournisseur().getId());
 			resp.setFournisseurNom(produit.getFournisseur().getNom());
 		}
-		
+
 		return resp;
 	}
-	
+
 //	@GetMapping("/by-price") // /api/produit/by-price?from=10&to=50
 	@JsonView(Views.Produit.class)
 	public List<Produit> findAllByPriceBetweenRP(@RequestParam double from, @RequestParam double to) {
 		return this.daoProduit.findAllByPrixBetween(from, to);
 	}
-	
-	// @RequestBody avec @Get (& @Delete) ne fonctionnent pas, puisqu'on a pas de corps de requêtes pour ces commandes HTTP
+
+	// @RequestBody avec @Get (& @Delete) ne fonctionnent pas, puisqu'on a pas de
+	// corps de requêtes pour ces commandes HTTP
 	@GetMapping("/by-price") // /api/produit/by-price?from=10&to=50
 	@JsonView(Views.Produit.class)
 	public List<Produit> findAllByPriceBetween(ProduitByPriceRequest request) {
 		return this.daoProduit.findAllByPrixBetween(request.getFrom(), request.getTo());
 	}
-	
+
 	@PostMapping("/by-price") // /api/produit/by-price
 	@JsonView(Views.Produit.class)
 	public List<Produit> findAllByPriceBetweenPost(@RequestBody ProduitByPriceRequest request) {
 		return this.daoProduit.findAllByPrixBetween(request.getFrom(), request.getTo());
 	}
-	
+
 	@GetMapping("/by-fournisseur-id/{fournisseurId}") // /api/produit/by-fournisseur-id/1
 	@JsonView(Views.Produit.class)
 	public List<Produit> findAllByFournisseurId(@PathVariable int fournisseurId) {
 		return this.daoProduit.findAllByFournisseurId(fournisseurId);
 	}
-	
+
 	@GetMapping("/by-fournisseur-id-v2/{fournisseurId}") // /api/produit/by-fournisseur-id/1
 	public List<ProduitResponse> findAllByFournisseurIdV2(@PathVariable int fournisseurId) {
 		List<Produit> produits = this.daoProduit.findAllByFournisseurId(fournisseurId);
 		List<ProduitResponse> responses = new ArrayList<>();
-		
+
 		for (Produit produit : produits) {
 			ProduitResponse resp = new ProduitResponse();
-			
+
 			BeanUtils.copyProperties(produit, resp);
-			
+
 			if (produit.getFournisseur() != null) {
-				resp.setFournisseurNom(produit.getFournisseur().getNom());				
+				resp.setFournisseurNom(produit.getFournisseur().getNom());
 			}
-			
+
 			responses.add(resp);
 		}
-		
+
 		return responses;
 	}
-	
+
 	@GetMapping("/by-fournisseur-id-v3/{fournisseurId}") // /api/produit/by-fournisseur-id/1
 	public List<ProduitResponse> findAllByFournisseurIdV3(@PathVariable int fournisseurId) {
-		return this.daoProduit
-					.findAllByFournisseurId(fournisseurId)
-					.stream() // On récupère le flux de produits
-					.map(produit -> {
-						ProduitResponse resp = new ProduitResponse();
-						
-						BeanUtils.copyProperties(produit, resp);
-						
-						if (produit.getFournisseur() != null) {
-							resp.setFournisseurNom(produit.getFournisseur().getNom());
-						}
-						
-						return resp;
-					}) // La fonction "map" permet de transformer
-					.toList() // La fonction "toList" permet de transformer le flux en liste
-					;
+		return this.daoProduit.findAllByFournisseurId(fournisseurId).stream() // On récupère le flux de produits
+				.map(produit -> {
+					ProduitResponse resp = new ProduitResponse();
+
+					BeanUtils.copyProperties(produit, resp);
+
+					if (produit.getFournisseur() != null) {
+						resp.setFournisseurNom(produit.getFournisseur().getNom());
+					}
+
+					return resp;
+				}) // La fonction "map" permet de transformer
+				.toList() // La fonction "toList" permet de transformer le flux en liste
+		;
 	}
-	
-	
+
 	@PostMapping
 	@JsonView(Views.Produit.class)
 	public Produit add(@RequestBody @Valid ProduitRequest produitRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ProduitBadRequestException();
 		}
-		
+
 		Produit produit = new Produit();
-		
+
 		BeanUtils.copyProperties(produitRequest, produit);
-		
-		Fournisseur fournisseur = new Fournisseur();
-		fournisseur.setId(produitRequest.getFournisseurId());
-		
-		produit.setFournisseur(fournisseur);
-		
+
+		if (produitRequest.getFournisseurId() != 0 && daoFournisseur.existsById(produitRequest.getFournisseurId())) {
+			Fournisseur fournisseur = new Fournisseur();
+			fournisseur.setId(produitRequest.getFournisseurId());
+
+			produit.setFournisseur(fournisseur);
+		}
+
 		return this.daoProduit.save(produit);
 	}
-	
+
 	@PutMapping("/{id}")
 	@JsonView(Views.Produit.class)
 	public Produit edit(@PathVariable int id, @RequestBody @Valid ProduitRequest produitRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ProduitBadRequestException();
 		}
-		
+
 		Produit produit = this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
-		
+
 		BeanUtils.copyProperties(produitRequest, produit);
-		Fournisseur fournisseur = new Fournisseur();
-		
-		fournisseur.setId(produitRequest.getFournisseurId());
-		produit.setFournisseur(fournisseur);
-		
+
+		if (produitRequest.getFournisseurId() != 0 && daoFournisseur.existsById(produitRequest.getFournisseurId())) {
+
+			Fournisseur fournisseur = new Fournisseur();
+
+			fournisseur.setId(produitRequest.getFournisseurId());
+			produit.setFournisseur(fournisseur);
+		} else {
+			produit.setFournisseur(null);
+		}
+
 		return this.daoProduit.save(produit);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public boolean deleteById(@PathVariable int id) {
 		try {
 //			this.daoProduit.findById(id).orElseThrow(ProduitNotFoundException::new);
-			
+
 			if (!this.daoProduit.existsById(id)) {
 				throw new ProduitNotFoundException();
 			}
-			
+
 			this.daoProduit.deleteById(id);
-			
+
 			return true;
 		}
-		
+
 		catch (Exception e) {
 			return false;
 		}
 	}
-	
 
 //	Lister les produits
 //	> GET
@@ -215,26 +225,24 @@ public class ProduitApiController {
 //	Supprimer un produit
 //	> DELETE
 //	> /api/produit/X
-	
-	
-	
+
 	@GetMapping("/demo")
 //	@ResponseBody
 	public String demo() {
 		return "demo";
 	}
-	
+
 	@GetMapping("/demo-complexe")
 	public Produit demoPlusComplexe() {
 		Produit produit = new Produit();
 		Fournisseur fournisseur = new Fournisseur();
-		
+
 		produit.setId(1);
 		produit.setLibelle("Démo");
 		produit.setFournisseur(fournisseur);
-		
+
 		fournisseur.setId(10);
-		
+
 		return produit;
 	}
 }

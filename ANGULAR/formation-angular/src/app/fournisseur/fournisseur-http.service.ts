@@ -3,6 +3,7 @@ import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { GlobalService } from '../global.service';
 import { Fournisseur } from '../model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class FournisseurHttpService {
   private fournisseurs: Array<Fournisseur> = new Array<Fournisseur>();
   private fournisseurApiPath: string;
 
-  constructor(private http: HttpClient, private globalService: GlobalService) {
-    this.fournisseurApiPath = globalService.apiPath + "/fournisseur/";
+  constructor(private http: HttpClient) {
+    this.fournisseurApiPath = environment.apiUrl + "/fournisseur";
     this.load();
   }
 
@@ -22,7 +23,7 @@ export class FournisseurHttpService {
   }
 
   findById(id: number): Observable<Fournisseur> {
-    return this.http.get<Fournisseur>(this.fournisseurApiPath + id);
+    return this.http.get<Fournisseur>(this.fournisseurApiPath + "/" + id);
   }
 
   create(fournisseur: Fournisseur): void {
@@ -32,13 +33,13 @@ export class FournisseurHttpService {
   }
 
   update(fournisseur: Fournisseur): void {
-    this.http.put<Fournisseur>(this.fournisseurApiPath + fournisseur.id, fournisseur).subscribe(resp => {
+    this.http.put<Fournisseur>(this.fournisseurApiPath + "/" +  fournisseur.id, fournisseur).subscribe(resp => {
       this.load();
     });
   }
 
   remove(id: number): void {
-    this.http.delete<boolean>(this.fournisseurApiPath + id).subscribe(resp => {
+    this.http.delete<boolean>(this.fournisseurApiPath + "/" + id).subscribe(resp => {
       this.load();
     });
   }

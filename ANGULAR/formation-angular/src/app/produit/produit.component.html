@@ -49,7 +49,8 @@
         </div>
         <div class="form-group">
             <label for="fournisseur">Fournisseur:</label>
-            <select class="form-control" id="fournisseur" name="fournisseur" [(ngModel)]="produitForm.fournisseur.id">
+            <select class="form-control" id="fournisseur" name="fournisseur" [(ngModel)]="produitForm.fournisseurId">
+                <option value="0">Veuillez sélectionner un fournisseur</option>
                 <option [value]="fournisseur.id" *ngFor="let fournisseur of listFournisseur()">{{fournisseur.id}} - {{fournisseur.nom}}</option>
             </select>
         </div>

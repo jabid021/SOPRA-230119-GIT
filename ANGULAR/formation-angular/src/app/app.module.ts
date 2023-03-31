@@ -13,6 +13,8 @@ import { ProduitComponent } from './produit/produit.component';
 import { ProduitService } from './produit/produit.service';
 import { FournisseurHttpService } from './fournisseur/fournisseur-http.service';
 import { GlobalService } from './global.service';
+import { ProduitHttpService } from './produit/produit-http.service';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { GlobalService } from './global.service';
     NavBarComponent,
     AccueilComponent,
     FournisseurComponent,
-    ProduitComponent
+    ProduitComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { GlobalService } from './global.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [GlobalService, FournisseurService, FournisseurHttpService, ProduitService],
+  providers: [GlobalService, FournisseurService, FournisseurHttpService, ProduitService, ProduitHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

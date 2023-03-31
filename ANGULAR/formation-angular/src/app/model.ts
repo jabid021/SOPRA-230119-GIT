@@ -8,6 +8,23 @@ export class Fournisseur {
     }
 }
 
+export class ProduitRequestResponse {
+    id: number;
+    libelle: string;
+    prix: number;
+    fournisseurId: number;
+    fournisseurNom: string
+
+    constructor(id?: number, libelle?: string, prix?: number, fournisseurId?: number, fournisseurNom?: string) {
+        this.id = id;
+        this.libelle = libelle;
+        this.prix = prix;
+        this.fournisseurId = fournisseurId;
+        this.fournisseurNom = fournisseurNom;
+    }
+}
+
+
 export class Produit {
     id: number;
     libelle: string;
