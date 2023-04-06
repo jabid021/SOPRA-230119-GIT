@@ -16,6 +16,7 @@ import { GlobalService } from './global.service';
 import { ProduitHttpService } from './produit/produit-http.service';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { HelloModule } from './hello/hello.module';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HelloModule } from './hello/hello.module';
     AccueilComponent,
     FournisseurComponent,
     ProduitComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
